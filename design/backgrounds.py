@@ -2,7 +2,7 @@
 
 The backgrounds hold everything that never changes: panels, the navigation rail,
 panel titles, legends and the glow behind the hero tile. Visuals sit on top with
-transparent backgrounds. Called from generate.py; can also run on its own:
+no fill of their own. Called from generate.py; can also run on its own:
 
     python design/backgrounds.py
 """
@@ -137,6 +137,8 @@ def legend_line(c, x, y, colour, label, dashed=False):
 
 # ------------------------------------------------------------------ pages
 
+TILE_LABELS = ["Payment volume", "Take rate", "Active merchants", "Fraud loss"]
+
 def overview() -> Canvas:
     c = Canvas()
     rail(c, "overview")
@@ -152,7 +154,7 @@ def overview() -> Canvas:
     c.rrect(362, 110, 114, 26, 13, outline=HAIRLINE)
     c.text(419, 123.5, "Daily, this month", size=10.5, fill=MUTED, anchor="mm")
 
-    for i, label in enumerate(["Payment volume", "Take rate", "Active merchants", "Fraud loss"]):
+    for i, label in enumerate(TILE_LABELS):
         x = 514 + i * 268
         c.panel(x, 93, 252, 238)
         c.caps(x + 19, 124, label)

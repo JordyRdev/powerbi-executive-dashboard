@@ -35,7 +35,7 @@ The synthetic data carries four known issues, so every check has something to sh
 | Ledger revenue for SaaS & subscriptions in March 2026 is €38,412.60 lower than the daily fact | Page 3 reconciliation chart: the gap line jumps in Mar 2026. Select Mar 2026 and the reconciliation tile fails. | Gap €38,413 in March, €0 in every other month |
 | Two country × segment days missing in August 2026 (PL Travel & mobility on 14 Aug, NL Gaming on 22 Aug) | Page 3 heatmap: two amber cells in Aug 2026. Select Aug 2026 and the completeness tile fails. | 3,098 of 3,100 rows (99.94%) |
 | The acquirer file `acq_south_20261031.csv` is still pending | Page 3 load log table and late-files tile; warning icon on the overview panel | 1 pending file |
-| Latest load at 06:02 CET on 1 Nov 2026 | Header pill "Data trusted · 06:02", freshness tile | Pass (deadline 07:00) |
+| Last file loaded 1 Nov 2026, 06:02 CET | Header pill "Data trusted · 06:02", freshness tile | Pass (deadline 07:00) |
 
 These values are also in `tests/expected_kpis.csv` and are checked by `tests/validation_queries.dax`.
 

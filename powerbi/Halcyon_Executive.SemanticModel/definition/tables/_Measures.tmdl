@@ -691,7 +691,7 @@ table _Measures
 			```
 		displayFolder: Format
 
-	/// Sub-line (MoM and vs plan) plus area and line of daily net revenue in the selected month. Canvas 352 x 140.
+	/// Daily net revenue for the chosen month as a filled trend, with the MoM and plan comparison above it. Canvas 352 x 140.
 	measure 'SVG Hero Sparkline' = ```
 			VAR _mint = "%233DDBB4"
 			VAR _amber = "%23F2B45A"
@@ -972,7 +972,7 @@ table _Measures
 		displayFolder: SVG
 		dataCategory: ImageUrl
 
-	/// Hexagon map of the 20 countries, fill by share of the largest country's volume, top country in the corner. Canvas 429 x 250.
+	/// Hex grid of the 20 countries, shaded by volume relative to the largest country; the top country is named in the corner. Canvas 429 x 250.
 	measure 'SVG Hex Map' = ```
 			VAR _mint = "%233DDBB4"
 			VAR _amber = "%23F2B45A"
@@ -1087,7 +1087,7 @@ table _Measures
 		displayFolder: SVG
 		dataCategory: ImageUrl
 
-	/// Rounded square with a check mark (pass, mint) or an exclamation mark (warn, amber). Canvas 24 x 24.
+	/// Status tile: mint tick when the check passes, amber exclamation mark when it only warns. Canvas 24 x 24.
 	measure 'SVG Check Status' = ```
 			VAR _mint = "%233DDBB4"
 			VAR _amber = "%23F2B45A"

@@ -106,7 +106,7 @@ def test_plan_story(t):
     plan = t["fact_monthly_segment"].groupby("month")["plan_revenue_eur"].sum()
     ahead = rev >= plan
     assert not ahead[pd.Period("2025-01", "M"):pd.Period("2025-06", "M")].any(), "behind plan in early 2025"
-    assert ahead.iloc[-3:].all(), "ahead of plan for the last three months"
+    assert ahead.iloc[-3:].all(), "last three months at or above plan"
     assert not ahead.iloc[-4], "the run starts three months ago"
 
 

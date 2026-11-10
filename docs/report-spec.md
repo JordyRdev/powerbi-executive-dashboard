@@ -4,16 +4,16 @@ Canvas 1600 × 900 px, three pages. Positions are in pixels from the top-left co
 
 ## Look
 
-| Role | Colour |
+| Used for | Hex |
 |---|---|
-| Page | `#0A0D12` |
-| Panel | `#10151C` |
-| Hairline | white at 7% (`#1F242B` on the panel) |
-| Text | `#E9EDF2` |
-| Muted text | `#8C96A5` |
-| Actual, positive | mint `#3DDBB4` |
-| Plan, warning | amber `#F2B45A` |
-| Negative | coral `#FF8A7A` |
+| Canvas | `#0A0D12` |
+| Panels | `#10151C` |
+| Panel borders and grid lines (white, 7% opacity) | `#1F242B` |
+| Values and labels | `#E9EDF2` |
+| Secondary labels, axes | `#8C96A5` |
+| Actuals, good news (mint) | `#3DDBB4` |
+| Plan lines, warnings (amber) | `#F2B45A` |
+| Bad news (coral) | `#FF8A7A` |
 
 - Font Segoe UI; numbers in Segoe UI Semibold.
 - Every visual has background, border, title and header turned off. The panels, the navigation rail and all static labels are part of the page background PNG (`design/backgrounds/`).
@@ -61,7 +61,7 @@ Panels drawn in the background (x, y, w, h): hero 107, 93, 391, 238 · KPI tiles
 
 Static text in the background: kicker "HALCYON PAY · EXECUTIVE OVERVIEW" (107, 27), KPI labels, "Daily, this month" chip (362, 112), chart legend (Actual / Plan) at (959, 383), hex legend "Low – High" at y 629, a hairline separator at x 1389 and the pill outline.
 
-Interactions: a click on a segment row filters the page. The hex map follows the slicers but cannot filter (image visuals have no data points). The month slicer does not filter the 12-month chart directly; the chart reads the selected month through its measures.
+Interactions: a click on a segment row filters the page. The hex map reacts to the month and region slicers; it cannot be clicked to filter, because an image visual has no data points. The month slicer does not filter the 12-month chart directly; the chart reads the selected month through its measures.
 
 ## Page 2 – Segments
 

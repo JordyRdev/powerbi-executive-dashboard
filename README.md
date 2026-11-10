@@ -14,7 +14,7 @@ All data is synthetic, made with a fixed seed by `generate.py`; Halcyon Pay is n
 
 ## What is on the pages
 
-- **Executive overview**: net revenue for the month with a daily trend, four KPI tiles (volume, take rate, active merchants, fraud loss) each with a progress ring and a 16-week spark, 12 months of revenue against plan, volume by country on a hex map, the segment table and the data trust panel.
+- **Executive overview**: net revenue for the month with a daily trend, four KPI tiles for payment volume, take rate, merchants and fraud, each with a progress ring and a 16-week spark, 12 months of revenue against plan, volume by country on a hex map, the segment table and the data trust panel.
 - **Segments**: one segment against the average over 24 months, all five segments with take rate and fraud, and a country × segment heat matrix.
 - **Data trust**: four checks (freshness, reconciliation, completeness, late files), the ledger reconciliation by month, a completeness heatmap and the load log of files that did not arrive.
 
@@ -22,7 +22,7 @@ The month slicer and the region chips are synced across pages. With no month sel
 
 ## How it's built
 
-**Designed backgrounds.** Panels, rounded corners, the navigation rail, panel titles and legends are one PNG per page, drawn by `design/backgrounds.py` with Pillow. Native visuals sit on top with transparent backgrounds. The page looks designed, and Power BI has very little to draw.
+**Designed backgrounds.** Panels, rounded corners, the navigation rail, panel titles and legends are one PNG per page, drawn by `design/backgrounds.py` with Pillow. The report visuals are laid over it with no fill or border of their own. The page looks designed, and Power BI has very little to draw.
 
 **SVG measures.** Sparklines, rings, the hex map, bullet bars and status icons are DAX measures that return SVG text with the *Image URL* data category, shown in Image visuals and table columns. No custom visuals and no add-ons, so the file opens anywhere. The pattern and a template to reuse are in [docs/svg-measures.md](docs/svg-measures.md).
 
@@ -50,7 +50,7 @@ python generate.py      # data/*.csv, tests/expected_kpis.csv, design/background
 pytest                  # keys, ranges, the story in the data, planted issues
 ```
 
-Open `powerbi/Halcyon_Executive.pbip`. If your clone is not in `C:\Users\jordy\Desktop12\github\pbi`, set the `DataFolder` parameter (Transform data > Edit parameters) to your `data\` folder, then refresh.
+Open `powerbi/Halcyon_Executive.pbip`. If your clone is not in `C:\Users\jordy\Desktop12\github\pbi\payments-executive-powerbi`, set the `DataFolder` parameter (Transform data > Edit parameters) to your `data\` folder, then refresh.
 
 To check the model, run the queries in `tests/validation_queries.dax` against the open model (DAX query view or any tool that connects to Desktop). Each returns `expected`, `actual` and `pass`.
 

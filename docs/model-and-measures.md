@@ -813,7 +813,7 @@ RETURN
 
 ### SVG
 
-**SVG Hero Sparkline** – Sub-line (MoM and vs plan) plus area and line of daily net revenue in the selected month. Canvas 352 x 140. (data category *Image URL*)
+**SVG Hero Sparkline** – Daily net revenue for the chosen month as a filled trend, with the MoM and plan comparison above it. Canvas 352 x 140. (data category *Image URL*)
 
 ```dax
 VAR _mint = "%233DDBB4"
@@ -1089,7 +1089,7 @@ RETURN
         & _ring & _spark & _txt & "</svg>"
 ```
 
-**SVG Hex Map** – Hexagon map of the 20 countries, fill by share of the largest country's volume, top country in the corner. Canvas 429 x 250. (data category *Image URL*)
+**SVG Hex Map** – Hex grid of the 20 countries, shaded by volume relative to the largest country; the top country is named in the corner. Canvas 429 x 250. (data category *Image URL*)
 
 ```dax
 VAR _mint = "%233DDBB4"
@@ -1201,7 +1201,7 @@ RETURN
     )
 ```
 
-**SVG Check Status** – Rounded square with a check mark (pass, mint) or an exclamation mark (warn, amber). Canvas 24 x 24. (data category *Image URL*)
+**SVG Check Status** – Status tile: mint tick when the check passes, amber exclamation mark when it only warns. Canvas 24 x 24. (data category *Image URL*)
 
 ```dax
 VAR _mint = "%233DDBB4"
