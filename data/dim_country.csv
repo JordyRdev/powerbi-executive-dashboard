@@ -1,0 +1,21 @@
+iso2,country,region,hex_col,hex_row
+IS,Iceland,Nordics,0,0
+NO,Norway,Nordics,3,0
+SE,Sweden,Nordics,4,0
+FI,Finland,Nordics,5,0
+IE,Ireland,EU,0,1
+GB,United Kingdom,UK,1,1
+DK,Denmark,Nordics,3,1
+NL,Netherlands,EU,2,2
+DE,Germany,EU,3,2
+PL,Poland,EU,4,2
+FR,France,EU,1,3
+BE,Belgium,EU,2,3
+CZ,Czechia,EU,3,3
+AT,Austria,EU,4,3
+PT,Portugal,EU,0,4
+ES,Spain,EU,1,4
+IT,Italy,EU,3,4
+HU,Hungary,EU,4,4
+RO,Romania,EU,5,4
+GR,Greece,EU,4,5
