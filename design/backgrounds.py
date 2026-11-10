@@ -118,7 +118,7 @@ def rail(c: Canvas, active: str):
 
 
 def header(c: Canvas, kicker: str):
-    c.text(107, 27, kicker.upper(), size=11, weight="semibold", fill=MUTED, spacing=1.6)
+    c.text(107, 28, kicker.upper(), size=11, weight="semibold", fill=MUTED, spacing=1.6)
 
 
 def legend_box(c, x, y, colour, label):
@@ -148,22 +148,22 @@ def overview() -> Canvas:
     hero = (107, 93, 391, 238)
     c.panel(*hero)
     c.glow(330, 330, 230, MINT, 0.08, hero)
-    c.caps(130, 114, "Net revenue")
+    c.caps(130, 116, "Net revenue")
     c.rrect(362, 110, 114, 26, 13, outline=HAIRLINE)
     c.text(419, 123.5, "Daily, this month", size=10.5, fill=MUTED, anchor="mm")
 
     for i, label in enumerate(["Payment volume", "Take rate", "Active merchants", "Fraud loss"]):
         x = 514 + i * 268
         c.panel(x, 93, 252, 238)
-        c.caps(x + 19, 121, label)
+        c.caps(x + 19, 124, label)
 
     c.panel(107, 349, 988, 302)
-    c.caps(130, 370, "Net revenue vs plan")
+    c.caps(130, 372, "Net revenue vs plan")
     legend_box(c, 959, 381, MINT, "Actual")
     legend_line(c, 1027, 381, AMBER, "Plan", dashed=True)
 
     c.panel(1111, 349, 459, 302)
-    c.caps(1134, 370, "Volume by country")
+    c.caps(1134, 372, "Volume by country")
     c.text(1134, 623, "Low", size=11, fill=MUTED)
     x0, x1 = 1164, 1514
     for k in range(x1 - x0):
@@ -174,7 +174,7 @@ def overview() -> Canvas:
 
     c.panel(107, 669, 988, 215)
     c.panel(1111, 669, 459, 215)
-    c.caps(1134, 688, "Data trust")
+    c.caps(1134, 690, "Data trust")
     return c
 
 

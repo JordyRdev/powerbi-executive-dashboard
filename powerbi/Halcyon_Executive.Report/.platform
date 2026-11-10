@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Report",
+    "displayName": "Halcyon_Executive"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "e1fc23be-a666-5b67-89a7-475c5e36ce50"
+  }
+}

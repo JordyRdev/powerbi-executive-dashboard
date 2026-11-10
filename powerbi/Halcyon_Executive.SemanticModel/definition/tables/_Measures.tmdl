@@ -795,8 +795,8 @@ table _Measures
 			    RETURN
 			        IF ( ISBLANK ( _r ), "plan set for all regions", SUBSTITUTE ( FORMAT ( _r, "0%", "en-US" ), "%", "%25" ) & " of plan" )
 			VAR _txt =
-			    "<text x='0' y='108' font-size='12'>" & _l1 & "<tspan fill='" & _soft & "'> vs " & _prev & "</tspan></text>"
-			        & "<text x='0' y='125' font-size='11' fill='" & _muted & "'>" & _l2 & "</text>"
+			    "<text x='0' y='102' font-size='12'>" & _l1 & "<tspan fill='" & _soft & "'> vs " & _prev & "</tspan></text>"
+			        & "<text x='0' y='119' font-size='11' fill='" & _muted & "'>" & _l2 & "</text>"
 			RETURN
 			    "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='226' height='130' viewBox='0 0 226 130' font-family='Segoe UI'>"
 			        & _ring & _spark & _txt & "</svg>"
@@ -852,8 +852,8 @@ table _Measures
 			        "<tspan font-weight='600' fill='" & IF ( _v >= 0, _mint, _coral ) & "'>" & FORMAT ( _v, "+0;-0;0", "en-US" ) & " bps" & "</tspan>"
 			VAR _l2 = "target " & SUBSTITUTE ( FORMAT ( [Plan Take Rate CM], "0.00%", "en-US" ), "%", "%25" )
 			VAR _txt =
-			    "<text x='0' y='108' font-size='12'>" & _l1 & "<tspan fill='" & _soft & "'> vs " & _prev & "</tspan></text>"
-			        & "<text x='0' y='125' font-size='11' fill='" & _muted & "'>" & _l2 & "</text>"
+			    "<text x='0' y='102' font-size='12'>" & _l1 & "<tspan fill='" & _soft & "'> vs " & _prev & "</tspan></text>"
+			        & "<text x='0' y='119' font-size='11' fill='" & _muted & "'>" & _l2 & "</text>"
 			RETURN
 			    "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='226' height='130' viewBox='0 0 226 130' font-family='Segoe UI'>"
 			        & _ring & _spark & _txt & "</svg>"
@@ -906,8 +906,8 @@ table _Measures
 			        "<tspan font-weight='600' fill='" & IF ( _v >= 0, _mint, _coral ) & "'>" & FORMAT ( _v, "+#,0;-#,0;0", "en-US" ) & "</tspan>"
 			VAR _l2 = SUBSTITUTE ( FORMAT ( DIVIDE ( [Active Merchants CM], [Plan Merchants CM] ), "0%", "en-US" ), "%", "%25" ) & " of plan"
 			VAR _txt =
-			    "<text x='0' y='108' font-size='12'>" & _l1 & "<tspan fill='" & _soft & "'> vs " & _prev & "</tspan></text>"
-			        & "<text x='0' y='125' font-size='11' fill='" & _muted & "'>" & _l2 & "</text>"
+			    "<text x='0' y='102' font-size='12'>" & _l1 & "<tspan fill='" & _soft & "'> vs " & _prev & "</tspan></text>"
+			        & "<text x='0' y='119' font-size='11' fill='" & _muted & "'>" & _l2 & "</text>"
 			RETURN
 			    "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='226' height='130' viewBox='0 0 226 130' font-family='Segoe UI'>"
 			        & _ring & _spark & _txt & "</svg>"
@@ -963,8 +963,8 @@ table _Measures
 			        "<tspan font-weight='600' fill='" & IF ( _v <= 0, _mint, _coral ) & "'>" & FORMAT ( _v, "+0.0;-0.0;0.0", "en-US" ) & " bps" & "</tspan>"
 			VAR _l2 = "limit " & FORMAT ( [Fraud Limit bps], "0", "en-US" ) & " bps"
 			VAR _txt =
-			    "<text x='0' y='108' font-size='12'>" & _l1 & "<tspan fill='" & _soft & "'> vs " & _prev & "</tspan></text>"
-			        & "<text x='0' y='125' font-size='11' fill='" & _muted & "'>" & _l2 & "</text>"
+			    "<text x='0' y='102' font-size='12'>" & _l1 & "<tspan fill='" & _soft & "'> vs " & _prev & "</tspan></text>"
+			        & "<text x='0' y='119' font-size='11' fill='" & _muted & "'>" & _l2 & "</text>"
 			RETURN
 			    "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='226' height='130' viewBox='0 0 226 130' font-family='Segoe UI'>"
 			        & _ring & _spark & _txt & "</svg>"
