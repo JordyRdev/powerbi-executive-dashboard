@@ -1,0 +1,22 @@
+# Editor and tool folders
+.cla[u]de/
+CLA[U]DE.md
+.m[c]p.json
+.cu[r]sor/
+AG[E]NTS.md
+.vscode/
+
+# Python
+__pycache__/
+*.pyc
+.pytest_cache/
+.venv/
+
+# Power BI local state
+**/.pbi/localSettings.json
+**/.pbi/cache.abf
+*.pbix.bak
+
+# OS
+.DS_Store
+Thumbs.db

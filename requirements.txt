@@ -1,0 +1,4 @@
+pandas>=2.1
+numpy>=1.26
+pillow>=10.0
+pytest>=8.0
