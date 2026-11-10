@@ -1,0 +1,5 @@
+/// Folder that holds the CSV files. Change it to the data folder of your clone.
+expression DataFolder = "C:\Users\jordy\Desktop12\github\pbi\data\" meta [IsParameterQuery = true, Type = "Text", IsParameterQueryRequired = true]
+
+	annotation PBI_ResultType = Text
+

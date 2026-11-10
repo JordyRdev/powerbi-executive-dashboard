@@ -1,0 +1,29 @@
+table DimSegment
+
+	column segment_id
+		dataType: int64
+		isHidden
+		summarizeBy: none
+		sourceColumn: segment_id
+
+	column segment
+		dataType: string
+		summarizeBy: none
+		sourceColumn: segment
+		sortByColumn: sort
+
+	column sort
+		dataType: int64
+		isHidden
+		summarizeBy: none
+		sourceColumn: sort
+
+	partition DimSegment = m
+		mode: import
+		source =
+				let
+					Source = Csv.Document(File.Contents(DataFolder & "dim_segment.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+					Headers = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+					Typed = Table.TransformColumnTypes(Headers, {{"segment_id", Int64.Type}, {"segment", type text}, {"sort", Int64.Type}}, "en-US")
+				in
+					Typed

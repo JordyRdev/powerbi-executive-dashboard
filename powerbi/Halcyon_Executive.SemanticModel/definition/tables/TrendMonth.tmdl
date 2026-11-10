@@ -1,0 +1,31 @@
+table TrendMonth
+
+	column 'Month start'
+		dataType: dateTime
+		isHidden
+		formatString: mmm yyyy
+		summarizeBy: none
+		sourceColumn: [Month start]
+
+	column 'Month key'
+		dataType: int64
+		isHidden
+		summarizeBy: none
+		sourceColumn: [Month key]
+
+	column Month
+		dataType: string
+		summarizeBy: none
+		sourceColumn: [Month]
+		sortByColumn: 'Month key'
+
+	partition TrendMonth = calculated
+		mode: import
+		source = ```
+				SELECTCOLUMNS (
+				    SUMMARIZE ( DimDate, DimDate[Month start], DimDate[Month key] ),
+				    "Month start", DimDate[Month start],
+				    "Month key", DimDate[Month key],
+				    "Month", FORMAT ( DimDate[Month start], "mmm yy", "en-US" )
+				)
+				```

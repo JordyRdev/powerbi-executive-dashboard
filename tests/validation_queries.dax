@@ -1,0 +1,157 @@
+// Validation queries: the model against tests/expected_kpis.csv.
+// Run each EVALUATE against the open model. Every row must return pass = TRUE.
+// Written by generate.py from expected_kpis.csv; do not edit by hand.
+
+// net_revenue, Oct 2026
+EVALUATE
+VAR _expected = 48218203.33
+VAR _actual = CALCULATE ( [Net Revenue CM], DimDate[Month] = "Oct 2026" )
+RETURN
+    ROW ( "kpi", "net_revenue", "period", "Oct 2026", "expected", _expected, "actual", _actual, "pass", ABS ( _actual - _expected ) <= 0.01 )
+
+// volume, Oct 2026
+EVALUATE
+VAR _expected = 2409999999.85
+VAR _actual = CALCULATE ( [Volume CM], DimDate[Month] = "Oct 2026" )
+RETURN
+    ROW ( "kpi", "volume", "period", "Oct 2026", "expected", _expected, "actual", _actual, "pass", ABS ( _actual - _expected ) <= 0.01 )
+
+// transactions, Oct 2026
+EVALUATE
+VAR _expected = 69688563.0
+VAR _actual = CALCULATE ( [Transactions CM], DimDate[Month] = "Oct 2026" )
+RETURN
+    ROW ( "kpi", "transactions", "period", "Oct 2026", "expected", _expected, "actual", _actual, "pass", ABS ( _actual - _expected ) <= 0.0 )
+
+// take_rate, Oct 2026
+EVALUATE
+VAR _expected = 0.02000755
+VAR _actual = CALCULATE ( [Take Rate CM], DimDate[Month] = "Oct 2026" )
+RETURN
+    ROW ( "kpi", "take_rate", "period", "Oct 2026", "expected", _expected, "actual", _actual, "pass", ABS ( _actual - _expected ) <= 1e-07 )
+
+// active_merchants, Oct 2026
+EVALUATE
+VAR _expected = 38214.0
+VAR _actual = CALCULATE ( [Active Merchants CM], DimDate[Month] = "Oct 2026" )
+RETURN
+    ROW ( "kpi", "active_merchants", "period", "Oct 2026", "expected", _expected, "actual", _actual, "pass", ABS ( _actual - _expected ) <= 0.0 )
+
+// fraud_loss_bps, Oct 2026
+EVALUATE
+VAR _expected = 4.131706
+VAR _actual = CALCULATE ( [Fraud Loss bps CM], DimDate[Month] = "Oct 2026" )
+RETURN
+    ROW ( "kpi", "fraud_loss_bps", "period", "Oct 2026", "expected", _expected, "actual", _actual, "pass", ABS ( _actual - _expected ) <= 1e-05 )
+
+// net_revenue, Oct 2025
+EVALUATE
+VAR _expected = 35011203.6
+VAR _actual = CALCULATE ( [Net Revenue CM], DimDate[Month] = "Oct 2025" )
+RETURN
+    ROW ( "kpi", "net_revenue", "period", "Oct 2025", "expected", _expected, "actual", _actual, "pass", ABS ( _actual - _expected ) <= 0.01 )
+
+// volume, Oct 2025
+EVALUATE
+VAR _expected = 1736592502.08
+VAR _actual = CALCULATE ( [Volume CM], DimDate[Month] = "Oct 2025" )
+RETURN
+    ROW ( "kpi", "volume", "period", "Oct 2025", "expected", _expected, "actual", _actual, "pass", ABS ( _actual - _expected ) <= 0.01 )
+
+// transactions, Oct 2025
+EVALUATE
+VAR _expected = 52258520.0
+VAR _actual = CALCULATE ( [Transactions CM], DimDate[Month] = "Oct 2025" )
+RETURN
+    ROW ( "kpi", "transactions", "period", "Oct 2025", "expected", _expected, "actual", _actual, "pass", ABS ( _actual - _expected ) <= 0.0 )
+
+// take_rate, Oct 2025
+EVALUATE
+VAR _expected = 0.02016086
+VAR _actual = CALCULATE ( [Take Rate CM], DimDate[Month] = "Oct 2025" )
+RETURN
+    ROW ( "kpi", "take_rate", "period", "Oct 2025", "expected", _expected, "actual", _actual, "pass", ABS ( _actual - _expected ) <= 1e-07 )
+
+// active_merchants, Oct 2025
+EVALUATE
+VAR _expected = 29519.0
+VAR _actual = CALCULATE ( [Active Merchants CM], DimDate[Month] = "Oct 2025" )
+RETURN
+    ROW ( "kpi", "active_merchants", "period", "Oct 2025", "expected", _expected, "actual", _actual, "pass", ABS ( _actual - _expected ) <= 0.0 )
+
+// fraud_loss_bps, Oct 2025
+EVALUATE
+VAR _expected = 4.401846
+VAR _actual = CALCULATE ( [Fraud Loss bps CM], DimDate[Month] = "Oct 2025" )
+RETURN
+    ROW ( "kpi", "fraud_loss_bps", "period", "Oct 2025", "expected", _expected, "actual", _actual, "pass", ABS ( _actual - _expected ) <= 1e-05 )
+
+// net_revenue_mom_pct, Oct 2026
+EVALUATE
+VAR _expected = 0.09572681
+VAR _actual = CALCULATE ( [Net Revenue MoM %], DimDate[Month] = "Oct 2026" )
+RETURN
+    ROW ( "kpi", "net_revenue_mom_pct", "period", "Oct 2026", "expected", _expected, "actual", _actual, "pass", ABS ( _actual - _expected ) <= 1e-07 )
+
+// net_revenue_vs_plan_pct, Oct 2026
+EVALUATE
+VAR _expected = 0.048
+VAR _actual = CALCULATE ( [Net Revenue vs Plan %], DimDate[Month] = "Oct 2026" )
+RETURN
+    ROW ( "kpi", "net_revenue_vs_plan_pct", "period", "Oct 2026", "expected", _expected, "actual", _actual, "pass", ABS ( _actual - _expected ) <= 1e-07 )
+
+// net_revenue_ytd, Oct 2026
+EVALUATE
+VAR _expected = 383716339.4
+VAR _actual = CALCULATE ( [Net Revenue YTD], DimDate[Month] = "Oct 2026" )
+RETURN
+    ROW ( "kpi", "net_revenue_ytd", "period", "Oct 2026", "expected", _expected, "actual", _actual, "pass", ABS ( _actual - _expected ) <= 0.01 )
+
+// net_revenue_yoy_pct, Oct 2026
+EVALUATE
+VAR _expected = 0.3772221
+VAR _actual = CALCULATE ( [Net Revenue YoY %], DimDate[Month] = "Oct 2026" )
+RETURN
+    ROW ( "kpi", "net_revenue_yoy_pct", "period", "Oct 2026", "expected", _expected, "actual", _actual, "pass", ABS ( _actual - _expected ) <= 1e-07 )
+
+// reconciliation_gap, Mar 2026
+EVALUATE
+VAR _expected = 38412.6
+VAR _actual = CALCULATE ( [Reconciliation Gap CM], DimDate[Month] = "Mar 2026" )
+RETURN
+    ROW ( "kpi", "reconciliation_gap", "period", "Mar 2026", "expected", _expected, "actual", _actual, "pass", ABS ( _actual - _expected ) <= 0.01 )
+
+// reconciliation_gap, Oct 2026
+EVALUATE
+VAR _expected = 0.0
+VAR _actual = CALCULATE ( [Reconciliation Gap CM], DimDate[Month] = "Oct 2026" )
+RETURN
+    ROW ( "kpi", "reconciliation_gap", "period", "Oct 2026", "expected", _expected, "actual", _actual, "pass", ABS ( _actual - _expected ) <= 0.01 )
+
+// completeness_pct, Aug 2026
+EVALUATE
+VAR _expected = 0.99935484
+VAR _actual = CALCULATE ( [Completeness CM], DimDate[Month] = "Aug 2026" )
+RETURN
+    ROW ( "kpi", "completeness_pct", "period", "Aug 2026", "expected", _expected, "actual", _actual, "pass", ABS ( _actual - _expected ) <= 1e-07 )
+
+// net_revenue_no_month_selected, latest month
+EVALUATE
+VAR _expected = 48218203.33
+VAR _actual = [Net Revenue CM]
+RETURN
+    ROW ( "kpi", "net_revenue_no_month_selected", "period", "latest month", "expected", _expected, "actual", _actual, "pass", ABS ( _actual - _expected ) <= 0.01 )
+
+// late_files, latest
+EVALUATE
+VAR _expected = 1.0
+VAR _actual = [Late Files]
+RETURN
+    ROW ( "kpi", "late_files", "period", "latest", "expected", _expected, "actual", _actual, "pass", ABS ( _actual - _expected ) <= 0.0 )
+
+// last_load, latest
+EVALUATE
+VAR _expected = "2026-11-01 06:02"
+VAR _actual = FORMAT ( [Last Load At], "yyyy-mm-dd hh:nn", "en-US" )
+RETURN
+    ROW ( "kpi", "last_load", "period", "latest", "expected", _expected, "actual", _actual, "pass", _actual = _expected )

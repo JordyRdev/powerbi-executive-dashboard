@@ -1,0 +1,51 @@
+table LoadLog
+
+	column date
+		dataType: dateTime
+		formatString: d mmm yyyy
+		summarizeBy: none
+		sourceColumn: date
+
+	column acquirer
+		dataType: string
+		summarizeBy: none
+		sourceColumn: acquirer
+
+	column file_name
+		dataType: string
+		summarizeBy: none
+		sourceColumn: file_name
+
+	column expected_at
+		dataType: dateTime
+		formatString: d mmm hh:nn
+		summarizeBy: none
+		sourceColumn: expected_at
+
+	column loaded_at
+		dataType: dateTime
+		formatString: d mmm hh:nn
+		summarizeBy: none
+		sourceColumn: loaded_at
+
+	column rows
+		dataType: int64
+		isHidden
+		summarizeBy: none
+		sourceColumn: rows
+
+	column status
+		dataType: string
+		summarizeBy: none
+		sourceColumn: status
+
+	partition LoadLog = m
+		mode: import
+		source =
+				let
+					Source = Csv.Document(File.Contents(DataFolder & "load_log.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+					Headers = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+					Nulls = Table.ReplaceValue(Headers, "", null, Replacer.ReplaceValue, {"loaded_at", "rows"}),
+					Typed = Table.TransformColumnTypes(Nulls, {{"date", type date}, {"acquirer", type text}, {"file_name", type text}, {"expected_at", type datetime}, {"loaded_at", type datetime}, {"rows", Int64.Type}, {"status", type text}}, "en-US")
+				in
+					Typed

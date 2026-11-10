@@ -1,0 +1,41 @@
+table DQ_Checks
+
+	column check_id
+		dataType: int64
+		isHidden
+		summarizeBy: none
+		sourceColumn: [check_id]
+
+	column check
+		dataType: string
+		summarizeBy: none
+		sourceColumn: [check]
+		sortByColumn: sort
+
+	column description
+		dataType: string
+		summarizeBy: none
+		sourceColumn: [description]
+
+	column sort
+		dataType: int64
+		isHidden
+		summarizeBy: none
+		sourceColumn: [sort]
+
+	partition DQ_Checks = calculated
+		mode: import
+		source = ```
+				DATATABLE (
+				    "check_id", INTEGER,
+				    "check", STRING,
+				    "description", STRING,
+				    "sort", INTEGER,
+				    {
+				        { 1, "Freshness", "Latest file loaded before 07:00 CET on the day after the last business date", 1 },
+				        { 2, "Reconciliation", "Daily revenue equals the finance ledger for the month, within 1 euro", 2 },
+				        { 3, "Completeness", "Every country and segment has a row for every day of the month", 3 },
+				        { 4, "Late files", "No acquirer file is still pending", 4 }
+				    }
+				)
+				```

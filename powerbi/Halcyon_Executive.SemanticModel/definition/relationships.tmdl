@@ -1,0 +1,32 @@
+relationship 0dac136d-9267-58fa-8269-cabb1fbcc696
+	fromColumn: FactDaily.date
+	toColumn: DimDate.Date
+
+relationship e22513a2-a6d8-528c-85e3-96380bc77289
+	fromColumn: FactDaily.iso2
+	toColumn: DimCountry.iso2
+
+relationship 931cd907-c7cd-5e35-a202-1d1d1bf12215
+	fromColumn: FactDaily.segment_id
+	toColumn: DimSegment.segment_id
+
+relationship 264a559e-7916-5d86-ad30-1230522d6f04
+	fromColumn: FactMonthlySegment.month
+	toColumn: DimDate.Date
+
+relationship 33410b19-5f09-5d35-985e-76a58800c1f3
+	fromColumn: FactMonthlySegment.segment_id
+	toColumn: DimSegment.segment_id
+
+relationship da0b0f15-1630-5406-8ad2-4d6e134c0de2
+	fromColumn: FactLedger.month
+	toColumn: DimDate.Date
+
+relationship 0ca10931-573a-5a46-8e14-d629364b8a73
+	fromColumn: FactLedger.segment_id
+	toColumn: DimSegment.segment_id
+
+relationship d129e5bf-d668-5b49-9a14-45668a86a196
+	fromColumn: LoadLog.date
+	toColumn: DimDate.Date
+

@@ -1,0 +1,23 @@
+model Model
+	culture: en-US
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: en-US
+	discourageImplicitMeasures
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+	annotation PBI_QueryOrder = ["DataFolder", "DimCountry", "DimSegment", "FactDaily", "FactMonthlySegment", "FactLedger", "LoadLog", "DimDate", "TrendMonth", "DQ_Checks", "_Measures"]
+
+ref table DimCountry
+ref table DimSegment
+ref table FactDaily
+ref table FactMonthlySegment
+ref table FactLedger
+ref table LoadLog
+ref table DimDate
+ref table TrendMonth
+ref table DQ_Checks
+ref table _Measures
+
+ref cultureInfo en-US

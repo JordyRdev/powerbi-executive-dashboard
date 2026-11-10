@@ -1,0 +1,54 @@
+table FactDaily
+
+	column date
+		dataType: dateTime
+		isHidden
+		formatString: yyyy-mm-dd
+		summarizeBy: none
+		sourceColumn: date
+
+	column iso2
+		dataType: string
+		isHidden
+		summarizeBy: none
+		sourceColumn: iso2
+
+	column segment_id
+		dataType: int64
+		isHidden
+		summarizeBy: none
+		sourceColumn: segment_id
+
+	column transactions
+		dataType: int64
+		isHidden
+		summarizeBy: none
+		sourceColumn: transactions
+
+	column volume_eur
+		dataType: decimal
+		isHidden
+		summarizeBy: none
+		sourceColumn: volume_eur
+
+	column net_revenue_eur
+		dataType: decimal
+		isHidden
+		summarizeBy: none
+		sourceColumn: net_revenue_eur
+
+	column fraud_loss_eur
+		dataType: decimal
+		isHidden
+		summarizeBy: none
+		sourceColumn: fraud_loss_eur
+
+	partition FactDaily = m
+		mode: import
+		source =
+				let
+					Source = Csv.Document(File.Contents(DataFolder & "fact_daily.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+					Headers = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+					Typed = Table.TransformColumnTypes(Headers, {{"date", type date}, {"iso2", type text}, {"segment_id", Int64.Type}, {"transactions", Int64.Type}, {"volume_eur", Currency.Type}, {"net_revenue_eur", Currency.Type}, {"fraud_loss_eur", Currency.Type}}, "en-US")
+				in
+					Typed

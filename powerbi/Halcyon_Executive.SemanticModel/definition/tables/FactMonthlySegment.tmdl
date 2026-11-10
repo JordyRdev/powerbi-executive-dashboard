@@ -1,0 +1,48 @@
+table FactMonthlySegment
+
+	column month
+		dataType: dateTime
+		isHidden
+		formatString: yyyy-mm-dd
+		summarizeBy: none
+		sourceColumn: month
+
+	column segment_id
+		dataType: int64
+		isHidden
+		summarizeBy: none
+		sourceColumn: segment_id
+
+	column active_merchants
+		dataType: int64
+		isHidden
+		summarizeBy: none
+		sourceColumn: active_merchants
+
+	column plan_revenue_eur
+		dataType: decimal
+		isHidden
+		summarizeBy: none
+		sourceColumn: plan_revenue_eur
+
+	column plan_volume_eur
+		dataType: decimal
+		isHidden
+		summarizeBy: none
+		sourceColumn: plan_volume_eur
+
+	column plan_merchants
+		dataType: int64
+		isHidden
+		summarizeBy: none
+		sourceColumn: plan_merchants
+
+	partition FactMonthlySegment = m
+		mode: import
+		source =
+				let
+					Source = Csv.Document(File.Contents(DataFolder & "fact_monthly_segment.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+					Headers = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+					Typed = Table.TransformColumnTypes(Headers, {{"month", type date}, {"segment_id", Int64.Type}, {"active_merchants", Int64.Type}, {"plan_revenue_eur", Currency.Type}, {"plan_volume_eur", Currency.Type}, {"plan_merchants", Int64.Type}}, "en-US")
+				in
+					Typed

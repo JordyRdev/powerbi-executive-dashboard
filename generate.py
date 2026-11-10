@@ -282,9 +282,57 @@ def expected_kpis(t: dict[str, pd.DataFrame]) -> pd.DataFrame:
     add("reconciliation_gap", "Oct 2026", round(gap.loc[o26], 2), 0.01)
     aug = f[f["month"] == p("2026-08")]
     add("completeness_pct", "Aug 2026", round(len(aug) / (20 * 5 * 31), 8), 1e-7)
+    add("net_revenue_no_month_selected", "latest month", round(by_m.loc[o26].net_revenue_eur, 2), 0.01)
     add("late_files", "latest", int((t["load_log"]["status"] == "pending").sum()), 0)
     add("last_load", "latest", t["load_log"]["loaded_at"].max().strftime("%Y-%m-%d %H:%M"), 0)
     return pd.DataFrame(rows)
+
+
+MEASURE_FOR = {
+    "net_revenue": "[Net Revenue CM]",
+    "volume": "[Volume CM]",
+    "transactions": "[Transactions CM]",
+    "take_rate": "[Take Rate CM]",
+    "active_merchants": "[Active Merchants CM]",
+    "fraud_loss_bps": "[Fraud Loss bps CM]",
+    "net_revenue_mom_pct": "[Net Revenue MoM %]",
+    "net_revenue_vs_plan_pct": "[Net Revenue vs Plan %]",
+    "net_revenue_ytd": "[Net Revenue YTD]",
+    "net_revenue_yoy_pct": "[Net Revenue YoY %]",
+    "reconciliation_gap": "[Reconciliation Gap CM]",
+    "completeness_pct": "[Completeness CM]",
+    "net_revenue_no_month_selected": "[Net Revenue CM]",
+    "late_files": "[Late Files]",
+    "last_load": 'FORMAT ( [Last Load At], "yyyy-mm-dd hh:nn", "en-US" )',
+}
+
+
+def validation_queries(exp: pd.DataFrame) -> str:
+    """One EVALUATE per expected KPI. Each returns expected, actual and a pass flag."""
+    rows = []
+    for r in exp.itertuples():
+        measure = MEASURE_FOR[r.kpi]
+        if r.period[:3] in ("Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"):
+            actual = f'CALCULATE ( {measure}, DimDate[Month] = "{r.period}" )'
+        else:
+            actual = measure
+        if r.kpi == "last_load":
+            expected, check = f'"{r.value}"', "_actual = _expected"
+        else:
+            expected, check = f"{float(r.value)!r}", f"ABS ( _actual - _expected ) <= {float(r.tolerance)!r}"
+        rows.append((r.kpi, r.period, actual, expected, check))
+    out = ["// Validation queries: the model against tests/expected_kpis.csv.",
+           "// Run each EVALUATE against the open model. Every row must return pass = TRUE.",
+           "// Written by generate.py from expected_kpis.csv; do not edit by hand.", ""]
+    for kpi, period, actual, expected, check in rows:
+        out += [f"// {kpi}, {period}",
+                "EVALUATE",
+                f"VAR _expected = {expected}",
+                f"VAR _actual = {actual}",
+                "RETURN",
+                f'    ROW ( "kpi", "{kpi}", "period", "{period}", "expected", _expected, "actual", _actual, "pass", {check} )',
+                ""]
+    return "\n".join(out)
 
 
 def main() -> None:
@@ -295,6 +343,8 @@ def main() -> None:
     exp = expected_kpis(tables)
     exp.to_csv(ROOT / "tests" / "expected_kpis.csv", index=False, lineterminator="\n")
     print(f"  tests/expected_kpis.csv  {len(exp)} KPIs")
+    (ROOT / "tests" / "validation_queries.dax").write_text(validation_queries(exp), encoding="utf-8")
+    print("  tests/validation_queries.dax")
 
     print("Backgrounds")
     sys.path.insert(0, str(ROOT / "design"))

@@ -1,0 +1,38 @@
+table DimCountry
+
+	column iso2
+		dataType: string
+		summarizeBy: none
+		sourceColumn: iso2
+
+	column country
+		dataType: string
+		summarizeBy: none
+		sourceColumn: country
+
+	column region
+		dataType: string
+		summarizeBy: none
+		sourceColumn: region
+
+	column hex_col
+		dataType: int64
+		isHidden
+		summarizeBy: none
+		sourceColumn: hex_col
+
+	column hex_row
+		dataType: int64
+		isHidden
+		summarizeBy: none
+		sourceColumn: hex_row
+
+	partition DimCountry = m
+		mode: import
+		source =
+				let
+					Source = Csv.Document(File.Contents(DataFolder & "dim_country.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+					Headers = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+					Typed = Table.TransformColumnTypes(Headers, {{"iso2", type text}, {"country", type text}, {"region", type text}, {"hex_col", Int64.Type}, {"hex_row", Int64.Type}}, "en-US")
+				in
+					Typed

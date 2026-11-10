@@ -1,0 +1,51 @@
+table DimDate
+
+	column Date
+		dataType: dateTime
+		formatString: d mmm yyyy
+		summarizeBy: none
+		sourceColumn: [Date]
+
+	column 'Month start'
+		dataType: dateTime
+		formatString: mmm yyyy
+		summarizeBy: none
+		sourceColumn: [Month start]
+
+	column Month
+		dataType: string
+		summarizeBy: none
+		sourceColumn: [Month]
+		sortByColumn: 'Month key'
+
+	column 'Month key'
+		dataType: int64
+		isHidden
+		summarizeBy: none
+		sourceColumn: [Month key]
+
+	column Year
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: [Year]
+
+	column IsLatestMonth
+		dataType: boolean
+		summarizeBy: none
+		sourceColumn: [IsLatestMonth]
+
+	partition DimDate = calculated
+		mode: import
+		source = ```
+				VAR _first = MIN ( FactDaily[date] )
+				VAR _last = MAX ( FactDaily[date] )
+				RETURN
+				    ADDCOLUMNS (
+				        CALENDAR ( DATE ( YEAR ( _first ), MONTH ( _first ), 1 ), EOMONTH ( _last, 0 ) ),
+				        "Month start", DATE ( YEAR ( [Date] ), MONTH ( [Date] ), 1 ),
+				        "Month", FORMAT ( [Date], "mmm yyyy", "en-US" ),
+				        "Month key", YEAR ( [Date] ) * 100 + MONTH ( [Date] ),
+				        "Year", YEAR ( [Date] ),
+				        "IsLatestMonth", EOMONTH ( [Date], 0 ) = EOMONTH ( _last, 0 )
+				    )
+				```
