@@ -50,7 +50,7 @@ python generate.py      # data/*.csv, tests/expected_kpis.csv, design/background
 pytest                  # keys, ranges, the story in the data, planted issues
 ```
 
-Open `powerbi/Halcyon_Executive.pbip`. If your clone is not in `C:\Users\jordy\Desktop12\github\pbi\payments-executive-powerbi`, set the `DataFolder` parameter (Transform data > Edit parameters) to your `data\` folder, then refresh.
+Open `powerbi/Halcyon_Executive.pbip`
 
 To check the model, run the queries in `tests/validation_queries.dax` against the open model (DAX query view or any tool that connects to Desktop). Each returns `expected`, `actual` and `pass`.
 
