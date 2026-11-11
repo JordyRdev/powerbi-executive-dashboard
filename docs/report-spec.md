@@ -51,7 +51,7 @@ Follows the reference image.
 | 10 | Fraud value | Card | `Fraud Loss Label`, tooltip `Tip Fraud Loss` | 1331 | 152 | 210 | 48 |
 | 11 | Fraud detail | Image (measure) | `SVG KPI Fraud` | 1333 | 108 | 226 | 130 |
 | 12 | Plan status line | Card | `Plan Status Line` | 122 | 386 | 520 | 30 |
-| 13 | Net revenue vs plan | Line and clustered column | axis `TrendMonth[Month]`, columns `Trend Net Revenue` (fill `Trend Bar Colour`), line `Trend Plan Revenue` (amber, dashed) | 118 | 420 | 966 | 222 |
+| 13 | Net revenue vs plan | Line and stacked column | axis `TrendMonth[Month]`, columns `Trend Revenue Other Months` (mint at 40%, `#226459`) and `Trend Revenue Selected Month` (mint); only one has a value per month, so each month is one bar. Line `Trend Plan Revenue` (amber, dashed) | 118 | 420 | 966 | 222 |
 | 14 | Volume by country | Image (measure) | `SVG Hex Map` | 1126 | 366 | 429 | 250 |
 | 15 | Merchant segment table | Table | `DimSegment[segment]`, `Volume Label Short`, `Volume MoM %` (font `MoM Colour`), `SVG Segment Spark`, `SVG Bullet vs Plan`; filter `DimSegment[sort] <= 4` | 118 | 676 | 966 | 206 |
 | 16 | Trust score | Card, right aligned, mint | `Trust Score Label` | 1420 | 682 | 135 | 26 |

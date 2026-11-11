@@ -10,7 +10,7 @@
     "tabOrder": 2900
   },
   "visual": {
-    "visualType": "lineClusteredColumnComboChart",
+    "visualType": "lineStackedColumnComboChart",
     "query": {
       "queryState": {
         "Category": {
@@ -41,11 +41,25 @@
                       "Entity": "_Measures"
                     }
                   },
-                  "Property": "Trend Net Revenue"
+                  "Property": "Trend Revenue Other Months"
                 }
               },
-              "queryRef": "_Measures.Trend Net Revenue",
-              "nativeQueryRef": "Trend Net Revenue"
+              "queryRef": "_Measures.Trend Revenue Other Months",
+              "nativeQueryRef": "Trend Revenue Other Months"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Trend Revenue Selected Month"
+                }
+              },
+              "queryRef": "_Measures.Trend Revenue Selected Month",
+              "nativeQueryRef": "Trend Revenue Selected Month"
             }
           ]
         },
@@ -254,6 +268,42 @@
                 "color": {
                   "expr": {
                     "Literal": {
+                      "Value": "'#226459'"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "_Measures.Trend Revenue Other Months"
+          }
+        },
+        {
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#3DDBB4'"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "_Measures.Trend Revenue Selected Month"
+          }
+        },
+        {
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
                       "Value": "'#F2B45A'"
                     }
                   }
@@ -263,36 +313,6 @@
           },
           "selector": {
             "metadata": "_Measures.Trend Plan Revenue"
-          }
-        },
-        {
-          "properties": {
-            "fill": {
-              "solid": {
-                "color": {
-                  "expr": {
-                    "Measure": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "_Measures"
-                        }
-                      },
-                      "Property": "Trend Bar Colour"
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "selector": {
-            "data": [
-              {
-                "dataViewWildcard": {
-                  "matchingOption": 1
-                }
-              }
-            ],
-            "metadata": "_Measures.Trend Net Revenue"
           }
         }
       ],

@@ -635,6 +635,18 @@ RETURN
     )
 ```
 
+**Trend Revenue Selected Month** – Trend net revenue for the selected month only; drawn in full mint. (format `€#,0`)
+
+```dax
+IF ( MAX ( TrendMonth[Month start] ) = MAX ( DimDate[Month start] ), [Trend Net Revenue] )
+```
+
+**Trend Revenue Other Months** – Trend net revenue for the other 11 months; drawn in mint at 40%. (format `€#,0`)
+
+```dax
+IF ( MAX ( TrendMonth[Month start] ) <> MAX ( DimDate[Month start] ), [Trend Net Revenue] )
+```
+
 **Selected Segment Revenue** – Net revenue of the segments selected in the segment slicer. (format `€#,0`)
 
 ```dax
@@ -839,12 +851,6 @@ RETURN
 ```
 
 ### Format
-
-**Trend Bar Colour** – Full mint for the selected month, mint at 40% for the other months.
-
-```dax
-IF ( MAX ( TrendMonth[Month start] ) = MAX ( DimDate[Month start] ), "#3DDBB4", "#226459" )
-```
 
 **MoM Colour** – Mint when volume grew month on month, coral when it fell.
 
