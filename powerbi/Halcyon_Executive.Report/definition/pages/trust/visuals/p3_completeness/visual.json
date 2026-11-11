@@ -27,7 +27,8 @@
                 }
               },
               "queryRef": "DimDate.Month",
-              "nativeQueryRef": "Month"
+              "nativeQueryRef": "Month",
+              "displayName": "MONTH"
             }
           ]
         },
@@ -181,7 +182,7 @@
             "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "10D"
+                  "Value": "9D"
                 }
               }
             },
@@ -304,7 +305,7 @@
             "rowPadding": {
               "expr": {
                 "Literal": {
-                  "Value": "3D"
+                  "Value": "1D"
                 }
               }
             },
@@ -350,7 +351,7 @@
             "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "10D"
+                  "Value": "9D"
                 }
               }
             },

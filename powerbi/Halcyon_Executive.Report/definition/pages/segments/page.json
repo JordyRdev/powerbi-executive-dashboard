@@ -84,13 +84,18 @@
   },
   "visualInteractions": [
     {
-      "source": "p2_segment_chips",
+      "source": "segments_month",
       "target": "p2_revenue_line",
       "type": "NoFilter"
     },
     {
-      "source": "segments_month",
-      "target": "p2_revenue_line",
+      "source": "p2_segment_chips",
+      "target": "p2_segment_table",
+      "type": "NoFilter"
+    },
+    {
+      "source": "p2_segment_chips",
+      "target": "p2_country_matrix",
       "type": "NoFilter"
     }
   ]

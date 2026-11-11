@@ -182,7 +182,7 @@
             "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "10.5D"
+                  "Value": "10D"
                 }
               }
             },
@@ -245,7 +245,7 @@
             "rowPadding": {
               "expr": {
                 "Literal": {
-                  "Value": "6D"
+                  "Value": "2D"
                 }
               }
             },
@@ -263,14 +263,14 @@
             "imageHeight": {
               "expr": {
                 "Literal": {
-                  "Value": "22D"
+                  "Value": "20D"
                 }
               }
             },
             "imageWidth": {
               "expr": {
                 "Literal": {
-                  "Value": "22D"
+                  "Value": "20D"
                 }
               }
             }
@@ -296,7 +296,7 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "40D"
+                  "Value": "36D"
                 }
               }
             }
@@ -310,7 +310,7 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "120D"
+                  "Value": "116D"
                 }
               }
             }
@@ -324,7 +324,7 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "260D"
+                  "Value": "250D"
                 }
               }
             }

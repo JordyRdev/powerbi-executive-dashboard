@@ -27,7 +27,8 @@
                 }
               },
               "queryRef": "DimCountry.country",
-              "nativeQueryRef": "country"
+              "nativeQueryRef": "country",
+              "displayName": "COUNTRY"
             }
           ]
         },

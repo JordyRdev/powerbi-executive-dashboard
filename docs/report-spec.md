@@ -74,7 +74,7 @@ Interactions: a click on a segment row filters the page. The hex map reacts to t
 
 Panels (x, y, w, h): chart 107, 149, 900, 350 · table 107, 515, 900, 369 · matrix 1023, 149, 547, 735.
 
-The segment chips do not filter the line chart (it compares the selected segment with the average through its measures, so the chart needs every segment). The month slicer does not filter the line chart (it always shows 24 months).
+The segment chips filter only the line chart: the selected segment is drawn against the average of all five, which the measure computes with the segment filter removed. The table and the matrix always show all five segments. The month slicer does not filter the line chart (it always shows 24 months).
 
 ## Page 3 – Data trust
 
