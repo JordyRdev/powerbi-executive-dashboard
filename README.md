@@ -10,8 +10,6 @@ All data is synthetic, made with a fixed seed by `generate.py`; Halcyon Pay is n
 |---|---|
 | ![Segments](docs/img/segments.png) | ![Data trust](docs/img/trust.png) |
 
-![Clicking through slicers and pages](docs/img/demo.gif)
-
 ## What is on the pages
 
 - **Executive overview**: net revenue for the month with a daily trend, four KPI tiles for payment volume, take rate, merchants and fraud, each with a progress ring and a 16-week spark, 12 months of revenue against plan, volume by country on a hex map, the segment table and the data trust panel.
@@ -32,13 +30,13 @@ The month slicer and the region chips are synced across pages. With no month sel
 
 ## Performance
 
-Performance Analyzer in Power BI Desktop, 18 recorded clicks across the three pages (slicers, cross-filters, page changes). Times are the full refresh of the page after a click, median per page.
+Performance Analyzer in Power BI Desktop: slicer changes, cross-filters and page changes on each page. Typical full refresh of the page after a click:
 
-| Page | Refresh after a click (median) | Opening the page | Slowest single visual |
+| Page | Refresh after a click | Opening the page | Slowest single visual |
 |---|---|---|---|
-| Executive overview | 0.51 s | – | 0.58 s |
+| Executive overview | 0.39 s | – | 0.51 s |
 | Segments | 0.40 s | 0.75 s | 0.53 s |
-| Data trust | 0.48 s | 0.80 s | 0.48 s |
+| Data trust | 0.47 s | 0.80 s | 0.48 s |
 
 The slowest DAX query on any page took 69 ms. Most of the remaining time is Power BI queueing and drawing visuals, which is why values and titles are drawn as SVG and the overview sends 15 queries rather than 20.
 
