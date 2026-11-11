@@ -259,7 +259,7 @@ def expected_kpis(t: dict[str, pd.DataFrame]) -> pd.DataFrame:
     rows = []
 
     def add(kpi, period, value, tol):
-        rows.append({"kpi": kpi, "period": period, "value": value, "tolerance": tol})
+                rows.append({"kpi": kpi, "period": period, "value": value + 0.0 if isinstance(value, float) else value, "tolerance": tol})  # + 0.0 turns -0.0 into 0.0
 
     for per, lbl in [(o26, "Oct 2026"), (o25, "Oct 2025")]:
         r = by_m.loc[per]
