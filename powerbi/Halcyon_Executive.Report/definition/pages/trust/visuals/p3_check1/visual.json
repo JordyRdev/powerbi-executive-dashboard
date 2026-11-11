@@ -1,13 +1,13 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
-  "name": "p3_check3_icon",
+  "name": "p3_check1",
   "position": {
-    "x": 1151,
-    "y": 109,
-    "z": 2100,
-    "width": 32,
-    "height": 32,
-    "tabOrder": 2100
+    "x": 130,
+    "y": 97,
+    "z": 1700,
+    "width": 340,
+    "height": 110,
+    "tabOrder": 1700
   },
   "visual": {
     "visualType": "image",
@@ -30,7 +30,7 @@
                       "Entity": "_Measures"
                     }
                   },
-                  "Property": "SVG Check Status"
+                  "Property": "SVG Check Tile"
                 }
               }
             }
@@ -157,7 +157,7 @@
   "filterConfig": {
     "filters": [
       {
-        "name": "check3",
+        "name": "check1",
         "field": {
           "Column": {
             "Expression": {
@@ -198,7 +198,7 @@
                     [
                       {
                         "Literal": {
-                          "Value": "3L"
+                          "Value": "1L"
                         }
                       }
                     ]

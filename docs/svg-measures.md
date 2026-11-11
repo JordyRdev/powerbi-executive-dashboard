@@ -86,15 +86,20 @@ To reuse it: change the base measure in step 2, the number of points (`GENERATES
 
 | Measure | Canvas | Used in |
 |---|---|---|
-| `SVG Hero Sparkline` | 352 × 140 | Overview, net revenue tile: sub-line plus daily area chart for the selected month |
-| `SVG KPI Volume`, `SVG KPI Take Rate`, `SVG KPI Merchants`, `SVG KPI Fraud` | 226 × 130 | Overview KPI tiles: ring, two sub-lines and a 16-point spark (weeks; months for merchants) |
+| `SVG Hero Sparkline` | 352 × 200 | Overview, net revenue tile: value, sub-line and daily area chart for the selected month |
+| `SVG KPI Volume`, `SVG KPI Take Rate`, `SVG KPI Merchants`, `SVG KPI Fraud` | 226 × 130 | Overview KPI tiles: value, ring, two sub-lines and a 16-point spark (weeks; months for merchants) |
 | `SVG Hex Map` | 429 × 250 | Overview, volume by country |
 | `SVG Segment Spark` | 106 × 28 | Segment tables, per row |
 | `SVG Bullet vs Plan` | 150 × 12 | Segment tables, per row |
-| `SVG Check Status` | 24 × 24 | Data trust table and tiles |
+| `SVG Check Status` | 24 × 24 | Data trust table on the overview |
+| `SVG Check Tile` | 340 × 110 | Data trust page: check value and status icon in one image |
+| `SVG Title …`, `SVG Plan Status Line`, `SVG Trust Score` | various | Text lines drawn as SVG instead of card visuals |
 
 The full DAX of each one is in [model-and-measures.md](model-and-measures.md).
 
 ## Performance
+
+Text is cheaper as SVG than as a card. In Performance Analyzer the new card visual spent 150–240 ms rendering each value, an Image visual about 60 ms, so the KPI values and the page titles are drawn inside the SVGs.
+
 
 Each SVG measure runs a handful of storage-engine queries (16 to 31 small `CALCULATE`s over a 73,000-row table) and some string work in the formula engine. Keep the number of points small, filter with `REMOVEFILTERS` plus simple column filters, and avoid iterating the fact table inside `CONCATENATEX`.

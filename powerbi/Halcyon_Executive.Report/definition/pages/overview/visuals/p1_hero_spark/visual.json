@@ -3,11 +3,11 @@
   "name": "p1_hero_spark",
   "position": {
     "x": 126,
-    "y": 188,
-    "z": 1900,
+    "y": 128,
+    "z": 1800,
     "width": 352,
-    "height": 140,
-    "tabOrder": 1900
+    "height": 200,
+    "tabOrder": 1800
   },
   "visual": {
     "visualType": "image",

@@ -2,173 +2,48 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "segments_title",
   "position": {
-    "x": 100,
-    "y": 42,
+    "x": 104,
+    "y": 40,
     "z": 1400,
     "width": 560,
-    "height": 40,
+    "height": 44,
     "tabOrder": 1400
   },
   "visual": {
-    "visualType": "cardVisual",
-    "query": {
-      "queryState": {
-        "Data": {
-          "projections": [
-            {
-              "field": {
+    "visualType": "image",
+    "objects": {
+      "image": [
+        {
+          "properties": {
+            "sourceType": {
+              "expr": {
+                "Literal": {
+                  "Value": "'imageData'"
+                }
+              }
+            },
+            "sourceField": {
+              "expr": {
                 "Measure": {
                   "Expression": {
                     "SourceRef": {
                       "Entity": "_Measures"
                     }
                   },
-                  "Property": "Page Title Segments"
-                }
-              },
-              "queryRef": "_Measures.Page Title Segments",
-              "nativeQueryRef": "Page Title Segments"
-            }
-          ]
-        }
-      }
-    },
-    "objects": {
-      "value": [
-        {
-          "properties": {
-            "fontSize": {
-              "expr": {
-                "Literal": {
-                  "Value": "20D"
-                }
-              }
-            },
-            "fontFamily": {
-              "expr": {
-                "Literal": {
-                  "Value": "'Segoe UI Semibold'"
-                }
-              }
-            },
-            "fontColor": {
-              "solid": {
-                "color": {
-                  "expr": {
-                    "Literal": {
-                      "Value": "'#E9EDF2'"
-                    }
-                  }
+                  "Property": "SVG Title Segments"
                 }
               }
             }
-          },
-          "selector": {
-            "id": "default"
           }
         }
       ],
-      "label": [
+      "imageScaling": [
         {
           "properties": {
-            "show": {
+            "imageScalingType": {
               "expr": {
                 "Literal": {
-                  "Value": "false"
-                }
-              }
-            }
-          },
-          "selector": {
-            "id": "default"
-          }
-        }
-      ],
-      "outline": [
-        {
-          "properties": {
-            "show": {
-              "expr": {
-                "Literal": {
-                  "Value": "false"
-                }
-              }
-            }
-          },
-          "selector": {
-            "id": "default"
-          }
-        }
-      ],
-      "fillCustom": [
-        {
-          "properties": {
-            "show": {
-              "expr": {
-                "Literal": {
-                  "Value": "false"
-                }
-              }
-            },
-            "transparency": {
-              "expr": {
-                "Literal": {
-                  "Value": "100D"
-                }
-              }
-            }
-          },
-          "selector": {
-            "id": "default"
-          }
-        }
-      ],
-      "padding": [
-        {
-          "properties": {
-            "paddingUniform": {
-              "expr": {
-                "Literal": {
-                  "Value": "0D"
-                }
-              }
-            }
-          },
-          "selector": {
-            "id": "default"
-          }
-        }
-      ],
-      "layout": [
-        {
-          "properties": {
-            "paddingUniform": {
-              "expr": {
-                "Literal": {
-                  "Value": "0D"
-                }
-              }
-            }
-          },
-          "selector": {
-            "id": "default"
-          }
-        }
-      ],
-      "cardCalloutArea": [
-        {
-          "properties": {
-            "backgroundTransparency": {
-              "expr": {
-                "Literal": {
-                  "Value": "100D"
-                }
-              }
-            },
-            "paddingUniform": {
-              "expr": {
-                "Literal": {
-                  "Value": "0D"
+                  "Value": "'Normal'"
                 }
               }
             }

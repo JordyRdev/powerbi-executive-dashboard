@@ -322,38 +322,6 @@ RETURN
     DIVIDE ( _cur - _prev, _prev )
 ```
 
-### KPI / Tooltips
-
-**Tip Net Revenue** – Tooltip text for the net revenue tile.
-
-```dax
-"Net revenue: fees kept after interchange and scheme costs, for the selected month."
-```
-
-**Tip Volume** – Tooltip text for the volume tile.
-
-```dax
-"Payment volume: value of all approved payments, for the selected month."
-```
-
-**Tip Take Rate** – Tooltip text for the take rate tile.
-
-```dax
-"Take rate: net revenue divided by payment volume. Target from the plan."
-```
-
-**Tip Active Merchants** – Tooltip text for the active merchants tile.
-
-```dax
-"Active merchants: merchants with at least one payment in the month. Not split by country."
-```
-
-**Tip Fraud Loss** – Tooltip text for the fraud loss tile.
-
-```dax
-"Fraud loss: losses written off divided by volume, in basis points. Limit 10 bps."
-```
-
 ### KPI / Labels
 
 **Net Revenue Label** – [Net Revenue CM] as compact text for cards and tables.
@@ -901,7 +869,7 @@ RETURN
 
 ### SVG
 
-**SVG Hero Sparkline** – Daily net revenue for the chosen month as a filled trend, with the MoM and plan comparison above it. Canvas 352 x 140. (data category *Image URL*)
+**SVG Hero Sparkline** – Net revenue value, the MoM and plan comparison, and daily net revenue for the chosen month as a filled trend. Canvas 352 x 200. (data category *Image URL*)
 
 ```dax
 VAR _mint = "%233DDBB4"
@@ -946,12 +914,14 @@ VAR _line =
         )
         & "</text>"
 RETURN
-    "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='352' height='140' viewBox='0 0 352 140' font-family='Segoe UI'>"
+    "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='352' height='200' viewBox='0 0 352 200' font-family='Segoe UI'>"
+        & "<text x='0' y='46' font-size='44' font-weight='600' fill='" & _text & "'>" & [Net Revenue Label] & "</text>"
+        & "<g transform='translate(0 60)'>"
         & "<defs><linearGradient id='g' x1='0' y1='0' x2='0' y2='1'><stop offset='0' stop-color='" & _mint & "' stop-opacity='0.30'/><stop offset='1' stop-color='" & _mint & "' stop-opacity='0.02'/></linearGradient></defs>"
         & _line
         & "<polygon points='2,138 " & _pts & " 348,138' fill='url(%23g)'/>"
         & "<polyline points='" & _pts & "' fill='none' stroke='" & _mint & "' stroke-width='2' stroke-linejoin='round'/>"
-        & "</svg>"
+        & "</g></svg>"
 ```
 
 **SVG KPI Volume** – Volume tile: ring = volume / plan, 16-week spark, MoM and share of plan. (data category *Image URL*)
@@ -1009,6 +979,7 @@ VAR _txt =
         & "<text x='0' y='119' font-size='11' fill='" & _muted & "'>" & _l2 & "</text>"
 RETURN
     "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='226' height='130' viewBox='0 0 226 130' font-family='Segoe UI'>"
+        & "<text x='0' y='80' font-size='30' font-weight='600' fill='" & _text & "'>" & SUBSTITUTE ( [Volume Label], "%", "%25" ) & "</text>"
         & _ring & _spark & _txt & "</svg>"
 ```
 
@@ -1065,6 +1036,7 @@ VAR _txt =
         & "<text x='0' y='119' font-size='11' fill='" & _muted & "'>" & _l2 & "</text>"
 RETURN
     "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='226' height='130' viewBox='0 0 226 130' font-family='Segoe UI'>"
+        & "<text x='0' y='80' font-size='30' font-weight='600' fill='" & _text & "'>" & SUBSTITUTE ( [Take Rate Label], "%", "%25" ) & "</text>"
         & _ring & _spark & _txt & "</svg>"
 ```
 
@@ -1121,6 +1093,7 @@ VAR _txt =
         & "<text x='0' y='119' font-size='11' fill='" & _muted & "'>" & _l2 & "</text>"
 RETURN
     "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='226' height='130' viewBox='0 0 226 130' font-family='Segoe UI'>"
+        & "<text x='0' y='80' font-size='30' font-weight='600' fill='" & _text & "'>" & SUBSTITUTE ( [Active Merchants Label], "%", "%25" ) & "</text>"
         & _ring & _spark & _txt & "</svg>"
 ```
 
@@ -1177,6 +1150,7 @@ VAR _txt =
         & "<text x='0' y='119' font-size='11' fill='" & _muted & "'>" & _l2 & "</text>"
 RETURN
     "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='226' height='130' viewBox='0 0 226 130' font-family='Segoe UI'>"
+        & "<text x='0' y='80' font-size='30' font-weight='600' fill='" & _text & "'>" & SUBSTITUTE ( [Fraud Loss Label], "%", "%25" ) & "</text>"
         & _ring & _spark & _txt & "</svg>"
 ```
 
@@ -1316,5 +1290,105 @@ RETURN
     IF (
         NOT ISBLANK ( _s ),
         "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'>" & _icon & "</svg>"
+    )
+```
+
+**SVG Title Overview** – Page title for the overview page, drawn as text. Canvas 560 x 44. (data category *Image URL*)
+
+```dax
+VAR _t = [Page Title Overview]
+RETURN
+    IF (
+        NOT ISBLANK ( _t ),
+        "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='560' height='44' viewBox='0 0 560 44' font-family='Segoe UI'>"
+            & "<text x='0' y='31' font-size='26' font-weight='600' text-anchor='start' fill='%23E9EDF2'>"
+            & SUBSTITUTE ( _t, "%", "%25" ) & "</text></svg>"
+    )
+```
+
+**SVG Title Segments** – Page title for the segments page, drawn as text. Canvas 560 x 44. (data category *Image URL*)
+
+```dax
+VAR _t = [Page Title Segments]
+RETURN
+    IF (
+        NOT ISBLANK ( _t ),
+        "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='560' height='44' viewBox='0 0 560 44' font-family='Segoe UI'>"
+            & "<text x='0' y='31' font-size='26' font-weight='600' text-anchor='start' fill='%23E9EDF2'>"
+            & SUBSTITUTE ( _t, "%", "%25" ) & "</text></svg>"
+    )
+```
+
+**SVG Title Trust** – Page title for the trust page, drawn as text. Canvas 560 x 44. (data category *Image URL*)
+
+```dax
+VAR _t = [Page Title Trust]
+RETURN
+    IF (
+        NOT ISBLANK ( _t ),
+        "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='560' height='44' viewBox='0 0 560 44' font-family='Segoe UI'>"
+            & "<text x='0' y='31' font-size='26' font-weight='600' text-anchor='start' fill='%23E9EDF2'>"
+            & SUBSTITUTE ( _t, "%", "%25" ) & "</text></svg>"
+    )
+```
+
+**SVG Plan Status Line** – Plan status line under the chart title. Canvas 520 x 30. (data category *Image URL*)
+
+```dax
+VAR _t = [Plan Status Line]
+RETURN
+    IF (
+        NOT ISBLANK ( _t ),
+        "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='520' height='30' viewBox='0 0 520 30' font-family='Segoe UI'>"
+            & "<text x='0' y='19' font-size='14' font-weight='400' text-anchor='start' fill='%23E9EDF2'>"
+            & SUBSTITUTE ( _t, "%", "%25" ) & "</text></svg>"
+    )
+```
+
+**SVG Trust Score** – Trust score, right aligned, for the data trust panel. Canvas 135 x 26. (data category *Image URL*)
+
+```dax
+VAR _t = [Trust Score Label]
+RETURN
+    IF (
+        NOT ISBLANK ( _t ),
+        "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='135' height='26' viewBox='0 0 135 26' font-family='Segoe UI'>"
+            & "<text x='135' y='17' font-size='13' font-weight='600' text-anchor='end' fill='%233DDBB4'>"
+            & SUBSTITUTE ( _t, "%", "%25" ) & "</text></svg>"
+    )
+```
+
+**SVG Check Tile** – Value of the check in context with its status icon at the top right. Canvas 340 x 110. (data category *Image URL*)
+
+```dax
+VAR _mint = "%233DDBB4"
+VAR _amber = "%23F2B45A"
+VAR _coral = "%23FF8A7A"
+VAR _text = "%23E9EDF2"
+VAR _soft = "%23B8C0CC"
+VAR _muted = "%238C96A5"
+VAR _track = "rgba(255,255,255,0.08)"
+VAR _s = [Check Status]
+VAR _v =
+    SWITCH (
+        SELECTEDVALUE ( DQ_Checks[check_id] ),
+        1, [Freshness Value],
+        2, [Reconciliation Gap Label],
+        3, [Completeness Label],
+        4, [Late Files Label]
+    )
+VAR _icon =
+    IF (
+        _s = 1,
+        "<rect width='24' height='24' rx='6' fill='rgba(61,219,180,0.14)'/><path d='M7.5 12.4l3 3 6-6.4' fill='none' stroke='" & _mint & "' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/>",
+        "<rect width='24' height='24' rx='6' fill='rgba(242,180,90,0.16)'/><rect x='11' y='6.5' width='2' height='7.5' rx='1' fill='" & _amber & "'/><circle cx='12' cy='17' r='1.2' fill='" & _amber & "'/>"
+    )
+RETURN
+    IF (
+        NOT ISBLANK ( _s ),
+        "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='340' height='110' viewBox='0 0 340 110' font-family='Segoe UI'>"
+            & "<g transform='translate(294 12)'>" & _icon & "</g>"
+            & "<text x='0' y='76' font-size='32' font-weight='600' fill='" & _text & "'>" & SUBSTITUTE ( _v, "%", "%25" ) & "</text>"
+            & "</svg>"
     )
 ```

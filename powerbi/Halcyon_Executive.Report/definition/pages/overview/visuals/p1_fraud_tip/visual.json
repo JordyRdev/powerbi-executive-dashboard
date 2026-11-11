@@ -1,49 +1,63 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
-  "name": "p3_check4_icon",
+  "name": "p1_fraud_tip",
   "position": {
-    "x": 1520,
-    "y": 109,
-    "z": 2300,
-    "width": 32,
-    "height": 32,
-    "tabOrder": 2300
+    "x": 1318,
+    "y": 93,
+    "z": 2700,
+    "width": 252,
+    "height": 238,
+    "tabOrder": 2700
   },
   "visual": {
-    "visualType": "image",
+    "visualType": "actionButton",
     "objects": {
-      "image": [
+      "text": [
         {
           "properties": {
-            "sourceType": {
+            "show": {
               "expr": {
                 "Literal": {
-                  "Value": "'imageData'"
-                }
-              }
-            },
-            "sourceField": {
-              "expr": {
-                "Measure": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "_Measures"
-                    }
-                  },
-                  "Property": "SVG Check Status"
+                  "Value": "false"
                 }
               }
             }
           }
         }
       ],
-      "imageScaling": [
+      "icon": [
         {
           "properties": {
-            "imageScalingType": {
+            "show": {
               "expr": {
                 "Literal": {
-                  "Value": "'Normal'"
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "fill": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "outline": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
                 }
               }
             }
@@ -150,65 +164,42 @@
             }
           }
         }
-      ]
-    },
-    "drillFilterOtherVisuals": true
-  },
-  "filterConfig": {
-    "filters": [
-      {
-        "name": "check4",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "DQ_Checks"
+      ],
+      "visualLink": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
               }
             },
-            "Property": "check_id"
-          }
-        },
-        "type": "Categorical",
-        "filter": {
-          "Version": 2,
-          "From": [
-            {
-              "Name": "s",
-              "Entity": "DQ_Checks",
-              "Type": 0
-            }
-          ],
-          "Where": [
-            {
-              "Condition": {
-                "In": {
-                  "Expressions": [
-                    {
-                      "Column": {
-                        "Expression": {
-                          "SourceRef": {
-                            "Source": "s"
-                          }
-                        },
-                        "Property": "check_id"
-                      }
-                    }
-                  ],
-                  "Values": [
-                    [
-                      {
-                        "Literal": {
-                          "Value": "4L"
-                        }
-                      }
-                    ]
-                  ]
+            "type": {
+              "expr": {
+                "Literal": {
+                  "Value": "'PageNavigation'"
+                }
+              }
+            },
+            "navigationSection": {
+              "expr": {
+                "Literal": {
+                  "Value": "'segments'"
+                }
+              }
+            },
+            "tooltip": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Fraud loss: losses written off divided by volume, in basis points. Ring: share of the 10 bps limit.'"
                 }
               }
             }
-          ]
+          }
         }
-      }
-    ]
+      ]
+    },
+    "drillFilterOtherVisuals": true
   }
 }
