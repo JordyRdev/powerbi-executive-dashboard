@@ -32,13 +32,15 @@ The month slicer and the region chips are synced across pages. With no month sel
 
 ## Performance
 
-Performance Analyzer in Power BI Desktop, cold cache, 1600 × 900:
+Performance Analyzer in Power BI Desktop, 18 recorded clicks across the three pages (slicers, cross-filters, page changes). Times are the full refresh of the page after a click, median per page.
 
-| Page | Slowest visual | Total |
-|---|---|---|
-| Executive overview | – | – |
-| Segments | – | – |
-| Data trust | – | – |
+| Page | Refresh after a click (median) | Opening the page | Slowest single visual |
+|---|---|---|---|
+| Executive overview | 0.51 s | – | 0.58 s |
+| Segments | 0.40 s | 0.75 s | 0.53 s |
+| Data trust | 0.48 s | 0.80 s | 0.48 s |
+
+The slowest DAX query on any page took 69 ms. Most of the remaining time is Power BI queueing and drawing visuals, which is why values and titles are drawn as SVG and the overview sends 15 queries rather than 20.
 
 ## Run it
 
