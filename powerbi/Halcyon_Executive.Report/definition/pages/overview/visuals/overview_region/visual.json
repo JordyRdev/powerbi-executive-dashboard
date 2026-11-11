@@ -2,10 +2,10 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "overview_region",
   "position": {
-    "x": 1084,
+    "x": 1060,
     "y": 33,
     "z": 1600,
-    "width": 296,
+    "width": 320,
     "height": 36,
     "tabOrder": 1600
   },

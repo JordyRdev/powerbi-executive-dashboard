@@ -142,7 +142,7 @@ RETURN
     CALCULATE ( SUM ( FactMonthlySegment[active_merchants] ), DimDate[Month start] = _m )
 ```
 
-**Net Revenue CM** – Net Revenue in the selected month. With no month selected, the latest month. (format `€#,0.0,,\M`)
+**Net Revenue CM** – Net Revenue in the selected month. With no month selected, the latest month. (format `€#,0`)
 
 ```dax
 VAR _m = MAX ( DimDate[Month start] )
@@ -150,7 +150,7 @@ RETURN
     CALCULATE ( [Net Revenue], REMOVEFILTERS ( DimDate ), DimDate[Month start] = _m )
 ```
 
-**Net Revenue PM** – Net Revenue in the month before the selected month. (format `€#,0.0,,\M`)
+**Net Revenue PM** – Net Revenue in the month before the selected month. (format `€#,0`)
 
 ```dax
 VAR _m = EDATE ( MAX ( DimDate[Month start] ), -1 )
@@ -158,7 +158,7 @@ RETURN
     CALCULATE ( [Net Revenue], REMOVEFILTERS ( DimDate ), DimDate[Month start] = _m )
 ```
 
-**Volume CM** – Volume in the selected month. With no month selected, the latest month. (format `€#,0.00,,,\B`)
+**Volume CM** – Volume in the selected month. With no month selected, the latest month. (format `€#,0`)
 
 ```dax
 VAR _m = MAX ( DimDate[Month start] )
@@ -166,7 +166,7 @@ RETURN
     CALCULATE ( [Volume], REMOVEFILTERS ( DimDate ), DimDate[Month start] = _m )
 ```
 
-**Volume PM** – Volume in the month before the selected month. (format `€#,0.00,,,\B`)
+**Volume PM** – Volume in the month before the selected month. (format `€#,0`)
 
 ```dax
 VAR _m = EDATE ( MAX ( DimDate[Month start] ), -1 )
@@ -292,7 +292,7 @@ RETURN
 [Fraud Loss bps CM] - [Fraud Loss bps PM]
 ```
 
-**Net Revenue YTD** – Net revenue from 1 January to the end of the selected month. (format `€#,0.0,,\M`)
+**Net Revenue YTD** – Net revenue from 1 January to the end of the selected month. (format `€#,0`)
 
 ```dax
 VAR _m = MAX ( DimDate[Month start] )
@@ -305,7 +305,7 @@ RETURN
     )
 ```
 
-**Net Revenue PY** – Net revenue in the same month one year earlier. (format `€#,0.0,,\M`)
+**Net Revenue PY** – Net revenue in the same month one year earlier. (format `€#,0`)
 
 ```dax
 VAR _m = EDATE ( MAX ( DimDate[Month start] ), -12 )
@@ -354,6 +354,88 @@ RETURN
 "Fraud loss: losses written off divided by volume, in basis points. Limit 10 bps."
 ```
 
+### KPI / Labels
+
+**Net Revenue Label** – [Net Revenue CM] as compact text for cards and tables.
+
+```dax
+VAR _v = [Net Revenue CM]
+RETURN
+    IF ( NOT ISBLANK ( _v ), FORMAT ( _v / 1e6, "€#,0.0", "en-US" ) & "M" )
+```
+
+**Volume Label** – [Volume CM] as compact text for cards and tables.
+
+```dax
+VAR _v = [Volume CM]
+RETURN
+    IF ( NOT ISBLANK ( _v ), FORMAT ( _v / 1e9, "€#,0.00", "en-US" ) & "B" )
+```
+
+**Take Rate Label** – [Take Rate CM] as compact text for cards and tables.
+
+```dax
+VAR _v = [Take Rate CM]
+RETURN
+    IF ( NOT ISBLANK ( _v ), FORMAT ( _v, "0.00%", "en-US" ) )
+```
+
+**Active Merchants Label** – [Active Merchants CM] as compact text for cards and tables.
+
+```dax
+VAR _v = [Active Merchants CM]
+RETURN
+    IF ( NOT ISBLANK ( _v ), FORMAT ( _v, "#,0", "en-US" ) )
+```
+
+**Fraud Loss Label** – [Fraud Loss bps CM] as compact text for cards and tables.
+
+```dax
+VAR _v = [Fraud Loss bps CM]
+RETURN
+    IF ( NOT ISBLANK ( _v ), FORMAT ( _v, "0.0", "en-US" ) & " bps" )
+```
+
+**Volume Label Short** – [Volume CM] as compact text for cards and tables.
+
+```dax
+VAR _v = [Volume CM]
+RETURN
+    IF ( NOT ISBLANK ( _v ), FORMAT ( _v / 1e6, "€#,0", "en-US" ) & "M" )
+```
+
+**Net Revenue Label Short** – [Net Revenue CM] as compact text for cards and tables.
+
+```dax
+VAR _v = [Net Revenue CM]
+RETURN
+    IF ( NOT ISBLANK ( _v ), FORMAT ( _v / 1e6, "€#,0.0", "en-US" ) & "M" )
+```
+
+**Reconciliation Gap Label** – [Reconciliation Gap CM] as compact text for cards and tables.
+
+```dax
+VAR _v = [Reconciliation Gap CM]
+RETURN
+    IF ( NOT ISBLANK ( _v ), FORMAT ( _v, "€#,0;-€#,0;€0", "en-US" ) )
+```
+
+**Completeness Label** – [Completeness CM] as compact text for cards and tables.
+
+```dax
+VAR _v = [Completeness CM]
+RETURN
+    IF ( NOT ISBLANK ( _v ), FORMAT ( _v, "0.0%", "en-US" ) )
+```
+
+**Late Files Label** – [Late Files] as compact text for cards and tables.
+
+```dax
+VAR _v = [Late Files]
+RETURN
+    IF ( NOT ISBLANK ( _v ), FORMAT ( _v, "0", "en-US" ) & IF ( _v = 1, " file", " files" ) )
+```
+
 ### Plan
 
 **Plan Revenue** – Net revenue plan for the months in context. (format `€#,0`)
@@ -376,7 +458,7 @@ RETURN
     CALCULATE ( SUM ( FactMonthlySegment[plan_merchants] ), DimDate[Month start] = _m )
 ```
 
-**Plan Revenue CM** – Net revenue plan for the selected month. Blank when a region is selected, because the plan is set per segment only. (format `€#,0.0,,\M`)
+**Plan Revenue CM** – Net revenue plan for the selected month. Blank when a region is selected, because the plan is set per segment only. (format `€#,0`)
 
 ```dax
 -- plan is set per segment, not per country
@@ -388,7 +470,7 @@ IF (
 )
 ```
 
-**Plan Volume CM** – Volume plan for the selected month. Blank when a region is selected. (format `€#,0.00,,,\B`)
+**Plan Volume CM** – Volume plan for the selected month. Blank when a region is selected. (format `€#,0`)
 
 ```dax
 -- plan is set per segment, not per country
@@ -529,7 +611,7 @@ RETURN
     )
 ```
 
-**Trend Net Revenue** – Net revenue for the 12 months up to the selected month, on the TrendMonth axis. (format `€#,0.0,,\M`)
+**Trend Net Revenue** – Net revenue for the 12 months up to the selected month, on the TrendMonth axis. (format `€#,0`)
 
 ```dax
 VAR _sel = MAX ( DimDate[Month start] )
@@ -541,7 +623,7 @@ RETURN
     )
 ```
 
-**Trend Plan Revenue** – Net revenue plan for the 12 months up to the selected month. Blank when a region is selected. (format `€#,0.0,,\M`)
+**Trend Plan Revenue** – Net revenue plan for the 12 months up to the selected month. Blank when a region is selected. (format `€#,0`)
 
 ```dax
 VAR _sel = MAX ( DimDate[Month start] )
@@ -553,13 +635,13 @@ RETURN
     )
 ```
 
-**Selected Segment Revenue** – Net revenue of the segments selected in the segment slicer. (format `€#,0.0,,\M`)
+**Selected Segment Revenue** – Net revenue of the segments selected in the segment slicer. (format `€#,0`)
 
 ```dax
 [Net Revenue]
 ```
 
-**Average Segment Revenue** – Net revenue of all segments divided by the number of segments. (format `€#,0.0,,\M`)
+**Average Segment Revenue** – Net revenue of all segments divided by the number of segments. (format `€#,0`)
 
 ```dax
 DIVIDE ( CALCULATE ( [Net Revenue], REMOVEFILTERS ( DimSegment ) ), COUNTROWS ( ALL ( DimSegment ) ) )
@@ -1007,7 +1089,10 @@ VAR _ring =
 -- spark: 16 points
 VAR _series = ADDCOLUMNS (
         GENERATESERIES ( 0, 15, 1 ),
-        "@v", CALCULATE ( [Active Merchants], REMOVEFILTERS ( DimDate ), DimDate[Month start] = EDATE ( _m, [Value] - 15 ) )
+        "@v",
+            VAR _mm = EDATE ( _m, [Value] - 15 )
+            RETURN
+                CALCULATE ( [Active Merchants], REMOVEFILTERS ( DimDate ), DimDate[Month start] = _mm )
     )
 VAR _hi = MAXX ( _series, [@v] )
 VAR _lo = MINX ( _series, [@v] )
@@ -1139,7 +1224,7 @@ RETURN
         & _hexes & "</svg>"
 ```
 
-**SVG Segment Spark** – Line and soft area of monthly volume, 18 months to the selected month. Mint when MoM >= 0, coral otherwise. Canvas 106 x 28. (data category *Image URL*)
+**SVG Segment Spark** – Line and soft area of monthly volume, 18 months to the selected month. Mint when MoM >= 0, coral otherwise. Canvas 150 x 28. (data category *Image URL*)
 
 ```dax
 VAR _mint = "%233DDBB4"
@@ -1153,14 +1238,17 @@ VAR _m = MAX ( DimDate[Month start] )
 VAR _t =
     ADDCOLUMNS (
         GENERATESERIES ( 0, 17, 1 ),
-        "@v", CALCULATE ( [Volume], REMOVEFILTERS ( DimDate ), DimDate[Month start] = EDATE ( _m, [Value] - 17 ) )
+        "@v",
+            VAR _mm = EDATE ( _m, [Value] - 17 )
+            RETURN
+                CALCULATE ( [Volume], REMOVEFILTERS ( DimDate ), DimDate[Month start] = _mm )
     )
 VAR _hi = MAXX ( _t, [@v] )
 VAR _lo = MINX ( _t, [@v] )
 VAR _pts =
     CONCATENATEX (
         _t,
-        FORMAT ( 2 + [Value] * 6, "0.0", "en-US" ) & ","
+        FORMAT ( 2 + [Value] * 8.5, "0.0", "en-US" ) & ","
             & FORMAT ( 25 - DIVIDE ( [@v] - _lo, _hi - _lo, 0.5 ) * 21, "0.0", "en-US" ),
         " ", [Value], ASC
     )
@@ -1168,14 +1256,14 @@ VAR _c = IF ( [Volume MoM %] >= 0, _mint, _coral )
 RETURN
     IF (
         HASONEVALUE ( DimSegment[segment_id] ),
-        "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='106' height='28' viewBox='0 0 106 28'>"
-            & "<polygon points='2,28 " & _pts & " 104,28' fill='" & _c & "' fill-opacity='0.14'/>"
+        "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='150' height='28' viewBox='0 0 150 28'>"
+            & "<polygon points='2,28 " & _pts & " 146.5,28' fill='" & _c & "' fill-opacity='0.14'/>"
             & "<polyline points='" & _pts & "' fill='none' stroke='" & _c & "' stroke-width='1.5' stroke-linejoin='round'/>"
             & "</svg>"
     )
 ```
 
-**SVG Bullet vs Plan** – Bar of volume / plan on a 0-110% scale with an amber target tick at 100%. Canvas 150 x 12. (data category *Image URL*)
+**SVG Bullet vs Plan** – Bar of volume / plan on a 0-110% scale with an amber target tick at 100%. Canvas 150 x 28. (data category *Image URL*)
 
 ```dax
 VAR _mint = "%233DDBB4"
@@ -1190,12 +1278,12 @@ VAR _w = MIN ( _r, 1.1 ) / 1.1 * 150
 RETURN
     IF (
         HASONEVALUE ( DimSegment[segment_id] ),
-        "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='150' height='12' viewBox='0 0 150 12'>"
-            & "<rect x='0' y='4' width='150' height='4' rx='2' fill='" & _track & "'/>"
+        "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='150' height='28' viewBox='0 0 150 28'>"
+            & "<rect x='0' y='12' width='150' height='4' rx='2' fill='" & _track & "'/>"
             & IF (
                 NOT ISBLANK ( _r ),
-                "<rect x='0' y='4' width='" & FORMAT ( _w, "0.0", "en-US" ) & "' height='4' rx='2' fill='" & _mint & "'/>"
-                    & "<rect x='135.4' y='0' width='2' height='12' rx='1' fill='" & _amber & "'/>"
+                "<rect x='0' y='12' width='" & FORMAT ( _w, "0.0", "en-US" ) & "' height='4' rx='2' fill='" & _mint & "'/>"
+                    & "<rect x='135.4' y='8' width='2' height='12' rx='1' fill='" & _amber & "'/>"
             )
             & "</svg>"
     )

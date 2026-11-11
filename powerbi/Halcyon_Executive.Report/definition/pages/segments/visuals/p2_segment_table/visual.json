@@ -38,11 +38,11 @@
                       "Entity": "_Measures"
                     }
                   },
-                  "Property": "Volume CM"
+                  "Property": "Volume Label Short"
                 }
               },
-              "queryRef": "_Measures.Volume CM",
-              "nativeQueryRef": "Volume CM",
+              "queryRef": "_Measures.Volume Label Short",
+              "nativeQueryRef": "Volume Label Short",
               "displayName": "VOLUME"
             },
             {
@@ -68,11 +68,11 @@
                       "Entity": "_Measures"
                     }
                   },
-                  "Property": "Net Revenue CM"
+                  "Property": "Net Revenue Label Short"
                 }
               },
-              "queryRef": "_Measures.Net Revenue CM",
-              "nativeQueryRef": "Net Revenue CM",
+              "queryRef": "_Measures.Net Revenue Label Short",
+              "nativeQueryRef": "Net Revenue Label Short",
               "displayName": "NET REVENUE"
             },
             {
@@ -371,6 +371,13 @@
                   "Value": "28D"
                 }
               }
+            },
+            "imageWidth": {
+              "expr": {
+                "Literal": {
+                  "Value": "150D"
+                }
+              }
             }
           }
         }
@@ -394,7 +401,7 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "190D"
+                  "Value": "170D"
                 }
               }
             }
@@ -408,13 +415,13 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "85D"
+                  "Value": "80D"
                 }
               }
             }
           },
           "selector": {
-            "metadata": "_Measures.Volume CM"
+            "metadata": "_Measures.Volume Label Short"
           }
         },
         {
@@ -442,7 +449,7 @@
             }
           },
           "selector": {
-            "metadata": "_Measures.Net Revenue CM"
+            "metadata": "_Measures.Net Revenue Label Short"
           }
         },
         {
@@ -478,7 +485,7 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "120D"
+                  "Value": "155D"
                 }
               }
             }
@@ -492,7 +499,7 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "160D"
+                  "Value": "150D"
                 }
               }
             }

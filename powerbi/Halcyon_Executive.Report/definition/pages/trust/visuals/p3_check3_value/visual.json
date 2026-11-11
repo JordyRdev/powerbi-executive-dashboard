@@ -23,11 +23,11 @@
                       "Entity": "_Measures"
                     }
                   },
-                  "Property": "Completeness CM"
+                  "Property": "Completeness Label"
                 }
               },
-              "queryRef": "_Measures.Completeness CM",
-              "nativeQueryRef": "Completeness CM"
+              "queryRef": "_Measures.Completeness Label",
+              "nativeQueryRef": "Completeness Label"
             }
           ]
         }
@@ -109,6 +109,13 @@
                   "Value": "false"
                 }
               }
+            },
+            "transparency": {
+              "expr": {
+                "Literal": {
+                  "Value": "100D"
+                }
+              }
             }
           },
           "selector": {
@@ -145,6 +152,26 @@
           },
           "selector": {
             "id": "default"
+          }
+        }
+      ],
+      "cardCalloutArea": [
+        {
+          "properties": {
+            "backgroundTransparency": {
+              "expr": {
+                "Literal": {
+                  "Value": "100D"
+                }
+              }
+            },
+            "paddingUniform": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
+                }
+              }
+            }
           }
         }
       ]

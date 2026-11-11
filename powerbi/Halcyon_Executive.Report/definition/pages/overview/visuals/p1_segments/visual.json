@@ -38,11 +38,11 @@
                       "Entity": "_Measures"
                     }
                   },
-                  "Property": "Volume CM"
+                  "Property": "Volume Label Short"
                 }
               },
-              "queryRef": "_Measures.Volume CM",
-              "nativeQueryRef": "Volume CM",
+              "queryRef": "_Measures.Volume Label Short",
+              "nativeQueryRef": "Volume Label Short",
               "displayName": "VOLUME"
             },
             {
@@ -326,6 +326,13 @@
                   "Value": "28D"
                 }
               }
+            },
+            "imageWidth": {
+              "expr": {
+                "Literal": {
+                  "Value": "150D"
+                }
+              }
             }
           }
         }
@@ -369,7 +376,7 @@
             }
           },
           "selector": {
-            "metadata": "_Measures.Volume CM"
+            "metadata": "_Measures.Volume Label Short"
           }
         },
         {
@@ -391,7 +398,7 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "150D"
+                  "Value": "160D"
                 }
               }
             }
@@ -405,7 +412,7 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "170D"
+                  "Value": "166D"
                 }
               }
             }

@@ -23,11 +23,11 @@
                       "Entity": "_Measures"
                     }
                   },
-                  "Property": "Take Rate CM"
+                  "Property": "Take Rate Label"
                 }
               },
-              "queryRef": "_Measures.Take Rate CM",
-              "nativeQueryRef": "Take Rate CM"
+              "queryRef": "_Measures.Take Rate Label",
+              "nativeQueryRef": "Take Rate Label"
             }
           ]
         },
@@ -127,6 +127,13 @@
                   "Value": "false"
                 }
               }
+            },
+            "transparency": {
+              "expr": {
+                "Literal": {
+                  "Value": "100D"
+                }
+              }
             }
           },
           "selector": {
@@ -163,6 +170,26 @@
           },
           "selector": {
             "id": "default"
+          }
+        }
+      ],
+      "cardCalloutArea": [
+        {
+          "properties": {
+            "backgroundTransparency": {
+              "expr": {
+                "Literal": {
+                  "Value": "100D"
+                }
+              }
+            },
+            "paddingUniform": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
+                }
+              }
+            }
           }
         }
       ]

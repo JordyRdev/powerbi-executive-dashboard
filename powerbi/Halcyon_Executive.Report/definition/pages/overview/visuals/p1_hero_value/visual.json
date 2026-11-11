@@ -23,11 +23,11 @@
                       "Entity": "_Measures"
                     }
                   },
-                  "Property": "Net Revenue CM"
+                  "Property": "Net Revenue Label"
                 }
               },
-              "queryRef": "_Measures.Net Revenue CM",
-              "nativeQueryRef": "Net Revenue CM"
+              "queryRef": "_Measures.Net Revenue Label",
+              "nativeQueryRef": "Net Revenue Label"
             }
           ]
         },
@@ -127,6 +127,13 @@
                   "Value": "false"
                 }
               }
+            },
+            "transparency": {
+              "expr": {
+                "Literal": {
+                  "Value": "100D"
+                }
+              }
             }
           },
           "selector": {
@@ -163,6 +170,26 @@
           },
           "selector": {
             "id": "default"
+          }
+        }
+      ],
+      "cardCalloutArea": [
+        {
+          "properties": {
+            "backgroundTransparency": {
+              "expr": {
+                "Literal": {
+                  "Value": "100D"
+                }
+              }
+            },
+            "paddingUniform": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
+                }
+              }
+            }
           }
         }
       ]

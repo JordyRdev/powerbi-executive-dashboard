@@ -59,33 +59,15 @@
                       "Entity": "_Measures"
                     }
                   },
-                  "Property": "Volume CM"
+                  "Property": "Volume Label Short"
                 }
               },
-              "queryRef": "_Measures.Volume CM",
-              "nativeQueryRef": "Volume CM",
+              "queryRef": "_Measures.Volume Label Short",
+              "nativeQueryRef": "Volume Label Short",
               "displayName": " "
             }
           ]
         }
-      },
-      "sortDefinition": {
-        "sort": [
-          {
-            "field": {
-              "Measure": {
-                "Expression": {
-                  "SourceRef": {
-                    "Entity": "_Measures"
-                  }
-                },
-                "Property": "Volume CM"
-              }
-            },
-            "direction": "Descending"
-          }
-        ],
-        "isDefaultSort": true
       }
     },
     "objects": {
@@ -250,7 +232,7 @@
                 }
               }
             ],
-            "metadata": "_Measures.Volume CM"
+            "metadata": "_Measures.Volume Label Short"
           }
         },
         {
@@ -280,7 +262,7 @@
                 }
               }
             ],
-            "metadata": "_Measures.Volume CM"
+            "metadata": "_Measures.Volume Label Short"
           }
         }
       ],

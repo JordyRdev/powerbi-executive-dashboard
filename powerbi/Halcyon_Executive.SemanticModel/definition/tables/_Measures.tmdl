@@ -45,7 +45,7 @@ table _Measures
 			RETURN
 			    CALCULATE ( [Net Revenue], REMOVEFILTERS ( DimDate ), DimDate[Month start] = _m )
 			```
-		formatString: €#,0.0,,\M
+		formatString: €#,0
 		displayFolder: KPI
 
 	/// Net Revenue in the month before the selected month.
@@ -54,7 +54,7 @@ table _Measures
 			RETURN
 			    CALCULATE ( [Net Revenue], REMOVEFILTERS ( DimDate ), DimDate[Month start] = _m )
 			```
-		formatString: €#,0.0,,\M
+		formatString: €#,0
 		displayFolder: KPI
 
 	/// Volume in the selected month. With no month selected, the latest month.
@@ -63,7 +63,7 @@ table _Measures
 			RETURN
 			    CALCULATE ( [Volume], REMOVEFILTERS ( DimDate ), DimDate[Month start] = _m )
 			```
-		formatString: €#,0.00,,,\B
+		formatString: €#,0
 		displayFolder: KPI
 
 	/// Volume in the month before the selected month.
@@ -72,7 +72,7 @@ table _Measures
 			RETURN
 			    CALCULATE ( [Volume], REMOVEFILTERS ( DimDate ), DimDate[Month start] = _m )
 			```
-		formatString: €#,0.00,,,\B
+		formatString: €#,0
 		displayFolder: KPI
 
 	/// Transactions in the selected month. With no month selected, the latest month.
@@ -213,7 +213,7 @@ table _Measures
 			        DimDate[Month start] <= _m
 			    )
 			```
-		formatString: €#,0.0,,\M
+		formatString: €#,0
 		displayFolder: KPI
 
 	/// Net revenue in the same month one year earlier.
@@ -222,7 +222,7 @@ table _Measures
 			RETURN
 			    CALCULATE ( [Net Revenue], REMOVEFILTERS ( DimDate ), DimDate[Month start] = _m )
 			```
-		formatString: €#,0.0,,\M
+		formatString: €#,0
 		displayFolder: KPI
 
 	/// Change in net revenue against the same month last year.
@@ -255,6 +255,86 @@ table _Measures
 	measure 'Tip Fraud Loss' = "Fraud loss: losses written off divided by volume, in basis points. Limit 10 bps."
 		displayFolder: KPI\Tooltips
 
+	/// [Net Revenue CM] as compact text for cards and tables.
+	measure 'Net Revenue Label' = ```
+			VAR _v = [Net Revenue CM]
+			RETURN
+			    IF ( NOT ISBLANK ( _v ), FORMAT ( _v / 1e6, "€#,0.0", "en-US" ) & "M" )
+			```
+		displayFolder: KPI\Labels
+
+	/// [Volume CM] as compact text for cards and tables.
+	measure 'Volume Label' = ```
+			VAR _v = [Volume CM]
+			RETURN
+			    IF ( NOT ISBLANK ( _v ), FORMAT ( _v / 1e9, "€#,0.00", "en-US" ) & "B" )
+			```
+		displayFolder: KPI\Labels
+
+	/// [Take Rate CM] as compact text for cards and tables.
+	measure 'Take Rate Label' = ```
+			VAR _v = [Take Rate CM]
+			RETURN
+			    IF ( NOT ISBLANK ( _v ), FORMAT ( _v, "0.00%", "en-US" ) )
+			```
+		displayFolder: KPI\Labels
+
+	/// [Active Merchants CM] as compact text for cards and tables.
+	measure 'Active Merchants Label' = ```
+			VAR _v = [Active Merchants CM]
+			RETURN
+			    IF ( NOT ISBLANK ( _v ), FORMAT ( _v, "#,0", "en-US" ) )
+			```
+		displayFolder: KPI\Labels
+
+	/// [Fraud Loss bps CM] as compact text for cards and tables.
+	measure 'Fraud Loss Label' = ```
+			VAR _v = [Fraud Loss bps CM]
+			RETURN
+			    IF ( NOT ISBLANK ( _v ), FORMAT ( _v, "0.0", "en-US" ) & " bps" )
+			```
+		displayFolder: KPI\Labels
+
+	/// [Volume CM] as compact text for cards and tables.
+	measure 'Volume Label Short' = ```
+			VAR _v = [Volume CM]
+			RETURN
+			    IF ( NOT ISBLANK ( _v ), FORMAT ( _v / 1e6, "€#,0", "en-US" ) & "M" )
+			```
+		displayFolder: KPI\Labels
+
+	/// [Net Revenue CM] as compact text for cards and tables.
+	measure 'Net Revenue Label Short' = ```
+			VAR _v = [Net Revenue CM]
+			RETURN
+			    IF ( NOT ISBLANK ( _v ), FORMAT ( _v / 1e6, "€#,0.0", "en-US" ) & "M" )
+			```
+		displayFolder: KPI\Labels
+
+	/// [Reconciliation Gap CM] as compact text for cards and tables.
+	measure 'Reconciliation Gap Label' = ```
+			VAR _v = [Reconciliation Gap CM]
+			RETURN
+			    IF ( NOT ISBLANK ( _v ), FORMAT ( _v, "€#,0;-€#,0;€0", "en-US" ) )
+			```
+		displayFolder: KPI\Labels
+
+	/// [Completeness CM] as compact text for cards and tables.
+	measure 'Completeness Label' = ```
+			VAR _v = [Completeness CM]
+			RETURN
+			    IF ( NOT ISBLANK ( _v ), FORMAT ( _v, "0.0%", "en-US" ) )
+			```
+		displayFolder: KPI\Labels
+
+	/// [Late Files] as compact text for cards and tables.
+	measure 'Late Files Label' = ```
+			VAR _v = [Late Files]
+			RETURN
+			    IF ( NOT ISBLANK ( _v ), FORMAT ( _v, "0", "en-US" ) & IF ( _v = 1, " file", " files" ) )
+			```
+		displayFolder: KPI\Labels
+
 	/// Net revenue plan for the months in context.
 	measure 'Plan Revenue' = SUM ( FactMonthlySegment[plan_revenue_eur] )
 		formatString: €#,0
@@ -284,7 +364,7 @@ table _Measures
 			        CALCULATE ( [Plan Revenue], REMOVEFILTERS ( DimDate ), DimDate[Month start] = _m )
 			)
 			```
-		formatString: €#,0.0,,\M
+		formatString: €#,0
 		displayFolder: Plan
 
 	/// Volume plan for the selected month. Blank when a region is selected.
@@ -297,7 +377,7 @@ table _Measures
 			        CALCULATE ( [Plan Volume], REMOVEFILTERS ( DimDate ), DimDate[Month start] = _m )
 			)
 			```
-		formatString: €#,0.00,,,\B
+		formatString: €#,0
 		displayFolder: Plan
 
 	/// Planned take rate for the selected month (plan revenue divided by plan volume).
@@ -440,7 +520,7 @@ table _Measures
 			        CALCULATE ( [Net Revenue], REMOVEFILTERS ( DimDate ), DimDate[Month start] = _ax )
 			    )
 			```
-		formatString: €#,0.0,,\M
+		formatString: €#,0
 		displayFolder: Trend
 
 	/// Net revenue plan for the 12 months up to the selected month. Blank when a region is selected.
@@ -453,17 +533,17 @@ table _Measures
 			        CALCULATE ( [Plan Revenue], REMOVEFILTERS ( DimDate ), DimDate[Month start] = _ax )
 			    )
 			```
-		formatString: €#,0.0,,\M
+		formatString: €#,0
 		displayFolder: Trend
 
 	/// Net revenue of the segments selected in the segment slicer.
 	measure 'Selected Segment Revenue' = [Net Revenue]
-		formatString: €#,0.0,,\M
+		formatString: €#,0
 		displayFolder: Trend
 
 	/// Net revenue of all segments divided by the number of segments.
 	measure 'Average Segment Revenue' = DIVIDE ( CALCULATE ( [Net Revenue], REMOVEFILTERS ( DimSegment ) ), COUNTROWS ( ALL ( DimSegment ) ) )
-		formatString: €#,0.0,,\M
+		formatString: €#,0
 		displayFolder: Trend
 
 	/// Latest business date in the daily fact.
@@ -887,7 +967,10 @@ table _Measures
 			-- spark: 16 points
 			VAR _series = ADDCOLUMNS (
 			        GENERATESERIES ( 0, 15, 1 ),
-			        "@v", CALCULATE ( [Active Merchants], REMOVEFILTERS ( DimDate ), DimDate[Month start] = EDATE ( _m, [Value] - 15 ) )
+			        "@v",
+			            VAR _mm = EDATE ( _m, [Value] - 15 )
+			            RETURN
+			                CALCULATE ( [Active Merchants], REMOVEFILTERS ( DimDate ), DimDate[Month start] = _mm )
 			    )
 			VAR _hi = MAXX ( _series, [@v] )
 			VAR _lo = MINX ( _series, [@v] )
@@ -1023,7 +1106,7 @@ table _Measures
 		displayFolder: SVG
 		dataCategory: ImageUrl
 
-	/// Line and soft area of monthly volume, 18 months to the selected month. Mint when MoM >= 0, coral otherwise. Canvas 106 x 28.
+	/// Line and soft area of monthly volume, 18 months to the selected month. Mint when MoM >= 0, coral otherwise. Canvas 150 x 28.
 	measure 'SVG Segment Spark' = ```
 			VAR _mint = "%233DDBB4"
 			VAR _amber = "%23F2B45A"
@@ -1036,14 +1119,17 @@ table _Measures
 			VAR _t =
 			    ADDCOLUMNS (
 			        GENERATESERIES ( 0, 17, 1 ),
-			        "@v", CALCULATE ( [Volume], REMOVEFILTERS ( DimDate ), DimDate[Month start] = EDATE ( _m, [Value] - 17 ) )
+			        "@v",
+			            VAR _mm = EDATE ( _m, [Value] - 17 )
+			            RETURN
+			                CALCULATE ( [Volume], REMOVEFILTERS ( DimDate ), DimDate[Month start] = _mm )
 			    )
 			VAR _hi = MAXX ( _t, [@v] )
 			VAR _lo = MINX ( _t, [@v] )
 			VAR _pts =
 			    CONCATENATEX (
 			        _t,
-			        FORMAT ( 2 + [Value] * 6, "0.0", "en-US" ) & ","
+			        FORMAT ( 2 + [Value] * 8.5, "0.0", "en-US" ) & ","
 			            & FORMAT ( 25 - DIVIDE ( [@v] - _lo, _hi - _lo, 0.5 ) * 21, "0.0", "en-US" ),
 			        " ", [Value], ASC
 			    )
@@ -1051,8 +1137,8 @@ table _Measures
 			RETURN
 			    IF (
 			        HASONEVALUE ( DimSegment[segment_id] ),
-			        "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='106' height='28' viewBox='0 0 106 28'>"
-			            & "<polygon points='2,28 " & _pts & " 104,28' fill='" & _c & "' fill-opacity='0.14'/>"
+			        "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='150' height='28' viewBox='0 0 150 28'>"
+			            & "<polygon points='2,28 " & _pts & " 146.5,28' fill='" & _c & "' fill-opacity='0.14'/>"
 			            & "<polyline points='" & _pts & "' fill='none' stroke='" & _c & "' stroke-width='1.5' stroke-linejoin='round'/>"
 			            & "</svg>"
 			    )
@@ -1060,7 +1146,7 @@ table _Measures
 		displayFolder: SVG
 		dataCategory: ImageUrl
 
-	/// Bar of volume / plan on a 0-110% scale with an amber target tick at 100%. Canvas 150 x 12.
+	/// Bar of volume / plan on a 0-110% scale with an amber target tick at 100%. Canvas 150 x 28.
 	measure 'SVG Bullet vs Plan' = ```
 			VAR _mint = "%233DDBB4"
 			VAR _amber = "%23F2B45A"
@@ -1074,12 +1160,12 @@ table _Measures
 			RETURN
 			    IF (
 			        HASONEVALUE ( DimSegment[segment_id] ),
-			        "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='150' height='12' viewBox='0 0 150 12'>"
-			            & "<rect x='0' y='4' width='150' height='4' rx='2' fill='" & _track & "'/>"
+			        "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='150' height='28' viewBox='0 0 150 28'>"
+			            & "<rect x='0' y='12' width='150' height='4' rx='2' fill='" & _track & "'/>"
 			            & IF (
 			                NOT ISBLANK ( _r ),
-			                "<rect x='0' y='4' width='" & FORMAT ( _w, "0.0", "en-US" ) & "' height='4' rx='2' fill='" & _mint & "'/>"
-			                    & "<rect x='135.4' y='0' width='2' height='12' rx='1' fill='" & _amber & "'/>"
+			                "<rect x='0' y='12' width='" & FORMAT ( _w, "0.0", "en-US" ) & "' height='4' rx='2' fill='" & _mint & "'/>"
+			                    & "<rect x='135.4' y='8' width='2' height='12' rx='1' fill='" & _amber & "'/>"
 			            )
 			            & "</svg>"
 			    )

@@ -23,11 +23,11 @@
                       "Entity": "_Measures"
                     }
                   },
-                  "Property": "Active Merchants CM"
+                  "Property": "Active Merchants Label"
                 }
               },
-              "queryRef": "_Measures.Active Merchants CM",
-              "nativeQueryRef": "Active Merchants CM"
+              "queryRef": "_Measures.Active Merchants Label",
+              "nativeQueryRef": "Active Merchants Label"
             }
           ]
         },
@@ -127,6 +127,13 @@
                   "Value": "false"
                 }
               }
+            },
+            "transparency": {
+              "expr": {
+                "Literal": {
+                  "Value": "100D"
+                }
+              }
             }
           },
           "selector": {
@@ -163,6 +170,26 @@
           },
           "selector": {
             "id": "default"
+          }
+        }
+      ],
+      "cardCalloutArea": [
+        {
+          "properties": {
+            "backgroundTransparency": {
+              "expr": {
+                "Literal": {
+                  "Value": "100D"
+                }
+              }
+            },
+            "paddingUniform": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
+                }
+              }
+            }
           }
         }
       ]

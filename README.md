@@ -28,7 +28,7 @@ The month slicer and the region chips are synced across pages. With no month sel
 
 **Data trust in the product.** Freshness, reconciliation against the finance ledger, completeness and late files are DAX measures that run under the same filters as the visuals. The data carries four known issues, and each one is visible on page 3. Rules and thresholds: [docs/data-trust.md](docs/data-trust.md).
 
-**Small model.** Import mode, one star schema: three dimensions, a 73,000-row daily fact, two monthly facts and a load log. No calculated columns on facts, single-direction relationships, 97 measures in display folders, each with a description. Details: [docs/model-and-measures.md](docs/model-and-measures.md). Visual positions: [docs/report-spec.md](docs/report-spec.md).
+**Small model.** Import mode, one star schema: three dimensions, a 73,000-row daily fact, two monthly facts and a load log. No calculated columns on facts, single-direction relationships, 107 measures in display folders, each with a description. Details: [docs/model-and-measures.md](docs/model-and-measures.md). Visual positions: [docs/report-spec.md](docs/report-spec.md).
 
 ## Performance
 

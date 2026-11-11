@@ -23,11 +23,11 @@
                       "Entity": "_Measures"
                     }
                   },
-                  "Property": "Fraud Loss bps CM"
+                  "Property": "Fraud Loss Label"
                 }
               },
-              "queryRef": "_Measures.Fraud Loss bps CM",
-              "nativeQueryRef": "Fraud Loss bps CM"
+              "queryRef": "_Measures.Fraud Loss Label",
+              "nativeQueryRef": "Fraud Loss Label"
             }
           ]
         },
@@ -127,6 +127,13 @@
                   "Value": "false"
                 }
               }
+            },
+            "transparency": {
+              "expr": {
+                "Literal": {
+                  "Value": "100D"
+                }
+              }
             }
           },
           "selector": {
@@ -163,6 +170,26 @@
           },
           "selector": {
             "id": "default"
+          }
+        }
+      ],
+      "cardCalloutArea": [
+        {
+          "properties": {
+            "backgroundTransparency": {
+              "expr": {
+                "Literal": {
+                  "Value": "100D"
+                }
+              }
+            },
+            "paddingUniform": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
+                }
+              }
+            }
           }
         }
       ]
